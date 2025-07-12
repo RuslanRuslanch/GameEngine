@@ -1,0 +1,122 @@
+﻿using GameEngine.GameObjects;
+using GameEngine.Graphics;
+using GameEngine.Resources;
+using OpenTK.Graphics.OpenGL;
+using OpenTK.Mathematics;
+
+namespace GameEngine.Components
+{
+    public sealed class SpriteRenderer : Component
+    {
+        public Material Material { get; private set; }
+
+        private int _vao;
+        private int _vertexObject;
+        private int _uvObject;
+        private int _normalObject;
+        private int _ebo;
+
+        private UVRegion _uvRegion = new UVRegion();
+
+        public SpriteRenderer(GameObject gameObject) : base(gameObject)
+        {
+        }
+
+        public override void OnStart()
+        {
+            SetInitialized();
+
+            var shader = Resources.Resources.Get<Shader>("spriteShader");
+            var texture = Resources.Resources.Get<Texture>("testTexture");
+
+            var material = new Material(texture, shader);
+
+            SetMaterial(material);
+            CreateBuffers();
+        }
+
+        public override void OnFinish()
+        {
+            DeleteBuffers();
+        }
+
+        public override bool CanRender(Frustum frustum)
+        {
+            var aabb = new AABB(GameObject.Transform.Position, GameObject.Transform.Position + GameObject.Transform.Scale);
+
+            return frustum.InFrustum(aabb);
+        }
+
+        public override void OnPreRender()
+        {
+            var projection = GameObject.World.MainCamera.ProjectionMatrix;
+            var view = GameObject.World.MainCamera.ViewMatrix;
+            var model = GameObject.Transform.ModelMatrix;
+
+            Material.Shader.Load("projection", ref projection);
+            Material.Shader.Load("view", ref view);
+            Material.Shader.Load("model", ref model);
+        }
+
+        public override void OnRender()
+        {
+            Material.Shader.Bind();
+            Material.Texture.Bind();
+
+            GL.BindVertexArray(_vao);
+            GL.DrawElements(PrimitiveType.Triangles, 6, DrawElementsType.UnsignedInt, IntPtr.Zero);
+        }
+
+        private void CreateBuffers()
+        {
+            var mesh = Resources.Resources.Get<Mesh>("spriteMesh");
+
+            var uvs = new Vector2[]
+            {
+                _uvRegion.Min,
+                _uvRegion.XOffset,
+                _uvRegion.YOffset,
+                _uvRegion.Max,
+            };
+
+            _vertexObject = new VBO(mesh.Vertices, BufferUsageHint.StaticDraw).ID;
+            _uvObject = new VBO(uvs, BufferUsageHint.StaticDraw).ID;
+            _normalObject = new VBO(mesh.Normals, BufferUsageHint.StaticDraw).ID;
+            _ebo = new EBO(mesh.Indecies, BufferUsageHint.StaticDraw).ID;
+
+            _vao = new DefaultVAO(_ebo, _vertexObject, _uvObject, _normalObject, Material.Shader).ID;
+        }
+
+        private void DeleteBuffers()
+        {
+            if (_vao == 0)
+            {
+                return;
+            }
+
+            GL.BindBuffer(BufferTarget.ElementArrayBuffer, 0);
+            GL.DeleteBuffer(_ebo);
+
+            GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
+            GL.DeleteBuffer(_vertexObject);
+            GL.DeleteBuffer(_uvObject);
+            GL.DeleteBuffer(_normalObject);
+
+            GL.BindVertexArray(0);
+            GL.DeleteVertexArray(_vao);
+        }
+
+        public void SetUV(UVRegion region)
+        {
+            _uvRegion = region;
+
+            DeleteBuffers();
+            CreateBuffers();
+        }
+
+        public void SetMaterial(Material material)
+        {
+            Material = material;
+        }
+    }
+}

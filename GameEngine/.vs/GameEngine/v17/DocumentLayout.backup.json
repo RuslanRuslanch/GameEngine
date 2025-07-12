@@ -1,0 +1,437 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Projects\\VSProjects\\GameEngine\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{4850EAC1-D8AF-48B5-9A54-EBCD1EEE31BC}|GameEngine.csproj|d:\\projects\\vsprojects\\gameengine\\source\\components\\soundsource.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4850EAC1-D8AF-48B5-9A54-EBCD1EEE31BC}|GameEngine.csproj|solutionrelative:source\\components\\soundsource.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4850EAC1-D8AF-48B5-9A54-EBCD1EEE31BC}|GameEngine.csproj|d:\\projects\\vsprojects\\gameengine\\source\\sounds\\sound.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4850EAC1-D8AF-48B5-9A54-EBCD1EEE31BC}|GameEngine.csproj|solutionrelative:source\\sounds\\sound.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4850EAC1-D8AF-48B5-9A54-EBCD1EEE31BC}|GameEngine.csproj|d:\\projects\\vsprojects\\gameengine\\source\\components\\particlerenderer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4850EAC1-D8AF-48B5-9A54-EBCD1EEE31BC}|GameEngine.csproj|solutionrelative:source\\components\\particlerenderer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4850EAC1-D8AF-48B5-9A54-EBCD1EEE31BC}|GameEngine.csproj|d:\\projects\\vsprojects\\gameengine\\source\\components\\camera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4850EAC1-D8AF-48B5-9A54-EBCD1EEE31BC}|GameEngine.csproj|solutionrelative:source\\components\\camera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4850EAC1-D8AF-48B5-9A54-EBCD1EEE31BC}|GameEngine.csproj|d:\\projects\\vsprojects\\gameengine\\source\\worlds\\world.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4850EAC1-D8AF-48B5-9A54-EBCD1EEE31BC}|GameEngine.csproj|solutionrelative:source\\worlds\\world.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4850EAC1-D8AF-48B5-9A54-EBCD1EEE31BC}|GameEngine.csproj|d:\\projects\\vsprojects\\gameengine\\source\\timer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4850EAC1-D8AF-48B5-9A54-EBCD1EEE31BC}|GameEngine.csproj|solutionrelative:source\\timer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4850EAC1-D8AF-48B5-9A54-EBCD1EEE31BC}|GameEngine.csproj|d:\\projects\\vsprojects\\gameengine\\source\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4850EAC1-D8AF-48B5-9A54-EBCD1EEE31BC}|GameEngine.csproj|solutionrelative:source\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4850EAC1-D8AF-48B5-9A54-EBCD1EEE31BC}|GameEngine.csproj|d:\\projects\\vsprojects\\gameengine\\source\\graphics\\renderwindow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4850EAC1-D8AF-48B5-9A54-EBCD1EEE31BC}|GameEngine.csproj|solutionrelative:source\\graphics\\renderwindow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4850EAC1-D8AF-48B5-9A54-EBCD1EEE31BC}|GameEngine.csproj|d:\\projects\\vsprojects\\gameengine\\shaders\\spritefragmentshader.frag||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{4850EAC1-D8AF-48B5-9A54-EBCD1EEE31BC}|GameEngine.csproj|solutionrelative:shaders\\spritefragmentshader.frag||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4850EAC1-D8AF-48B5-9A54-EBCD1EEE31BC}|GameEngine.csproj|d:\\projects\\vsprojects\\gameengine\\shaders\\spritevertexshader.vert||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{4850EAC1-D8AF-48B5-9A54-EBCD1EEE31BC}|GameEngine.csproj|solutionrelative:shaders\\spritevertexshader.vert||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4850EAC1-D8AF-48B5-9A54-EBCD1EEE31BC}|GameEngine.csproj|d:\\projects\\vsprojects\\gameengine\\shaders\\lineworldvertexshader.vert||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{4850EAC1-D8AF-48B5-9A54-EBCD1EEE31BC}|GameEngine.csproj|solutionrelative:shaders\\lineworldvertexshader.vert||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4850EAC1-D8AF-48B5-9A54-EBCD1EEE31BC}|GameEngine.csproj|d:\\projects\\vsprojects\\gameengine\\source\\components\\linerenderer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4850EAC1-D8AF-48B5-9A54-EBCD1EEE31BC}|GameEngine.csproj|solutionrelative:source\\components\\linerenderer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4850EAC1-D8AF-48B5-9A54-EBCD1EEE31BC}|GameEngine.csproj|d:\\projects\\vsprojects\\gameengine\\source\\components\\textrenderer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4850EAC1-D8AF-48B5-9A54-EBCD1EEE31BC}|GameEngine.csproj|solutionrelative:source\\components\\textrenderer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4850EAC1-D8AF-48B5-9A54-EBCD1EEE31BC}|GameEngine.csproj|d:\\projects\\vsprojects\\gameengine\\source\\components\\transform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4850EAC1-D8AF-48B5-9A54-EBCD1EEE31BC}|GameEngine.csproj|solutionrelative:source\\components\\transform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4850EAC1-D8AF-48B5-9A54-EBCD1EEE31BC}|GameEngine.csproj|d:\\projects\\vsprojects\\gameengine\\source\\graphics\\resources\\mesh.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4850EAC1-D8AF-48B5-9A54-EBCD1EEE31BC}|GameEngine.csproj|solutionrelative:source\\graphics\\resources\\mesh.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4850EAC1-D8AF-48B5-9A54-EBCD1EEE31BC}|GameEngine.csproj|d:\\projects\\vsprojects\\gameengine\\source\\components\\spriterenderer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4850EAC1-D8AF-48B5-9A54-EBCD1EEE31BC}|GameEngine.csproj|solutionrelative:source\\components\\spriterenderer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4850EAC1-D8AF-48B5-9A54-EBCD1EEE31BC}|GameEngine.csproj|d:\\projects\\vsprojects\\gameengine\\source\\graphics\\buffers\\defaultvao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4850EAC1-D8AF-48B5-9A54-EBCD1EEE31BC}|GameEngine.csproj|solutionrelative:source\\graphics\\buffers\\defaultvao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4850EAC1-D8AF-48B5-9A54-EBCD1EEE31BC}|GameEngine.csproj|d:\\projects\\vsprojects\\gameengine\\source\\graphics\\resources\\font.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4850EAC1-D8AF-48B5-9A54-EBCD1EEE31BC}|GameEngine.csproj|solutionrelative:source\\graphics\\resources\\font.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4850EAC1-D8AF-48B5-9A54-EBCD1EEE31BC}|GameEngine.csproj|d:\\projects\\vsprojects\\gameengine\\source\\graphics\\buffers\\linevao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4850EAC1-D8AF-48B5-9A54-EBCD1EEE31BC}|GameEngine.csproj|solutionrelative:source\\graphics\\buffers\\linevao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4850EAC1-D8AF-48B5-9A54-EBCD1EEE31BC}|GameEngine.csproj|d:\\projects\\vsprojects\\gameengine\\source\\components\\component.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4850EAC1-D8AF-48B5-9A54-EBCD1EEE31BC}|GameEngine.csproj|solutionrelative:source\\components\\component.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4850EAC1-D8AF-48B5-9A54-EBCD1EEE31BC}|GameEngine.csproj|d:\\projects\\vsprojects\\gameengine\\source\\graphics\\buffers\\vbo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4850EAC1-D8AF-48B5-9A54-EBCD1EEE31BC}|GameEngine.csproj|solutionrelative:source\\graphics\\buffers\\vbo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4850EAC1-D8AF-48B5-9A54-EBCD1EEE31BC}|GameEngine.csproj|d:\\projects\\vsprojects\\gameengine\\source\\gameobjects\\gameobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4850EAC1-D8AF-48B5-9A54-EBCD1EEE31BC}|GameEngine.csproj|solutionrelative:source\\gameobjects\\gameobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Projects\\VSProjects\\GameEngine\\Source\\Systems\\ResourceSystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Source\\Systems\\ResourceSystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 8,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:131:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{dcc4ea97-1c0c-482b-b205-e541c0df9728}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:2:0:{dcc4ea97-1c0c-482b-b205-e541c0df9728}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Sound.cs",
+              "DocumentMoniker": "D:\\Projects\\VSProjects\\GameEngine\\Source\\Sounds\\Sound.cs",
+              "RelativeDocumentMoniker": "Source\\Sounds\\Sound.cs",
+              "ToolTip": "D:\\Projects\\VSProjects\\GameEngine\\Source\\Sounds\\Sound.cs",
+              "RelativeToolTip": "Source\\Sounds\\Sound.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAQwBMAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-10T17:32:52.805Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SoundSource.cs",
+              "DocumentMoniker": "D:\\Projects\\VSProjects\\GameEngine\\Source\\Components\\SoundSource.cs",
+              "RelativeDocumentMoniker": "Source\\Components\\SoundSource.cs",
+              "ToolTip": "D:\\Projects\\VSProjects\\GameEngine\\Source\\Components\\SoundSource.cs",
+              "RelativeToolTip": "Source\\Components\\SoundSource.cs",
+              "ViewState": "AgIAACwAAAAAAAAAAAA8wBUAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-10T17:28:40.265Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Mesh.cs",
+              "DocumentMoniker": "D:\\Projects\\VSProjects\\GameEngine\\Source\\Graphics\\Resources\\Mesh.cs",
+              "RelativeDocumentMoniker": "Source\\Graphics\\Resources\\Mesh.cs",
+              "ToolTip": "D:\\Projects\\VSProjects\\GameEngine\\Source\\Graphics\\Resources\\Mesh.cs",
+              "RelativeToolTip": "Source\\Graphics\\Resources\\Mesh.cs",
+              "ViewState": "AgIAACYAAAAAAAAAAIBJwE8AAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T17:46:31.209Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ParticleRenderer.cs",
+              "DocumentMoniker": "D:\\Projects\\VSProjects\\GameEngine\\Source\\Components\\ParticleRenderer.cs",
+              "RelativeDocumentMoniker": "Source\\Components\\ParticleRenderer.cs",
+              "ToolTip": "D:\\Projects\\VSProjects\\GameEngine\\Source\\Components\\ParticleRenderer.cs",
+              "RelativeToolTip": "Source\\Components\\ParticleRenderer.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAgwBYAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T17:42:59.697Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Timer.cs",
+              "DocumentMoniker": "D:\\Projects\\VSProjects\\GameEngine\\Source\\Timer.cs",
+              "RelativeDocumentMoniker": "Source\\Timer.cs",
+              "ToolTip": "D:\\Projects\\VSProjects\\GameEngine\\Source\\Timer.cs",
+              "RelativeToolTip": "Source\\Timer.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAgwAIAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T17:37:55.822Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Transform.cs",
+              "DocumentMoniker": "D:\\Projects\\VSProjects\\GameEngine\\Source\\Components\\Transform.cs",
+              "RelativeDocumentMoniker": "Source\\Components\\Transform.cs",
+              "ToolTip": "D:\\Projects\\VSProjects\\GameEngine\\Source\\Components\\Transform.cs",
+              "RelativeToolTip": "Source\\Components\\Transform.cs",
+              "ViewState": "AgIAAEsAAAAAAAAAAAAgwE8AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T17:26:22.494Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "TextRenderer.cs",
+              "DocumentMoniker": "D:\\Projects\\VSProjects\\GameEngine\\Source\\Components\\TextRenderer.cs",
+              "RelativeDocumentMoniker": "Source\\Components\\TextRenderer.cs",
+              "ToolTip": "D:\\Projects\\VSProjects\\GameEngine\\Source\\Components\\TextRenderer.cs",
+              "RelativeToolTip": "Source\\Components\\TextRenderer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T16:36:24.933Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Font.cs",
+              "DocumentMoniker": "D:\\Projects\\VSProjects\\GameEngine\\Source\\Graphics\\Resources\\Font.cs",
+              "RelativeDocumentMoniker": "Source\\Graphics\\Resources\\Font.cs",
+              "ToolTip": "D:\\Projects\\VSProjects\\GameEngine\\Source\\Graphics\\Resources\\Font.cs",
+              "RelativeToolTip": "Source\\Graphics\\Resources\\Font.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T16:27:22.093Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "LineVAO.cs",
+              "DocumentMoniker": "D:\\Projects\\VSProjects\\GameEngine\\Source\\Graphics\\Buffers\\LineVAO.cs",
+              "RelativeDocumentMoniker": "Source\\Graphics\\Buffers\\LineVAO.cs",
+              "ToolTip": "D:\\Projects\\VSProjects\\GameEngine\\Source\\Graphics\\Buffers\\LineVAO.cs",
+              "RelativeToolTip": "Source\\Graphics\\Buffers\\LineVAO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T16:27:14.477Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "ResourceSystem.cs",
+              "DocumentMoniker": "D:\\Projects\\VSProjects\\GameEngine\\Source\\Systems\\ResourceSystem.cs",
+              "RelativeDocumentMoniker": "Source\\Systems\\ResourceSystem.cs",
+              "ToolTip": "D:\\Projects\\VSProjects\\GameEngine\\Source\\Systems\\ResourceSystem.cs",
+              "RelativeToolTip": "Source\\Systems\\ResourceSystem.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T13:55:24.756Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "RenderWindow.cs",
+              "DocumentMoniker": "D:\\Projects\\VSProjects\\GameEngine\\Source\\Graphics\\RenderWindow.cs",
+              "RelativeDocumentMoniker": "Source\\Graphics\\RenderWindow.cs",
+              "ToolTip": "D:\\Projects\\VSProjects\\GameEngine\\Source\\Graphics\\RenderWindow.cs",
+              "RelativeToolTip": "Source\\Graphics\\RenderWindow.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAwwC0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T13:24:55.585Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Projects\\VSProjects\\GameEngine\\Source\\Program.cs",
+              "RelativeDocumentMoniker": "Source\\Program.cs",
+              "ToolTip": "D:\\Projects\\VSProjects\\GameEngine\\Source\\Program.cs",
+              "RelativeToolTip": "Source\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T13:24:53.013Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "DefaultVAO.cs",
+              "DocumentMoniker": "D:\\Projects\\VSProjects\\GameEngine\\Source\\Graphics\\Buffers\\DefaultVAO.cs",
+              "RelativeDocumentMoniker": "Source\\Graphics\\Buffers\\DefaultVAO.cs",
+              "ToolTip": "D:\\Projects\\VSProjects\\GameEngine\\Source\\Graphics\\Buffers\\DefaultVAO.cs",
+              "RelativeToolTip": "Source\\Graphics\\Buffers\\DefaultVAO.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAgwCYAAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T13:23:15.814Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "VBO.cs",
+              "DocumentMoniker": "D:\\Projects\\VSProjects\\GameEngine\\Source\\Graphics\\Buffers\\VBO.cs",
+              "RelativeDocumentMoniker": "Source\\Graphics\\Buffers\\VBO.cs",
+              "ToolTip": "D:\\Projects\\VSProjects\\GameEngine\\Source\\Graphics\\Buffers\\VBO.cs",
+              "RelativeToolTip": "Source\\Graphics\\Buffers\\VBO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwCgAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T13:09:11.572Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "LineWorldVertexShader.vert",
+              "DocumentMoniker": "D:\\Projects\\VSProjects\\GameEngine\\Shaders\\LineWorldVertexShader.vert",
+              "RelativeDocumentMoniker": "Shaders\\LineWorldVertexShader.vert",
+              "ToolTip": "D:\\Projects\\VSProjects\\GameEngine\\Shaders\\LineWorldVertexShader.vert",
+              "RelativeToolTip": "Shaders\\LineWorldVertexShader.vert",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-07-07T12:44:24.669Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Camera.cs",
+              "DocumentMoniker": "D:\\Projects\\VSProjects\\GameEngine\\Source\\Components\\Camera.cs",
+              "RelativeDocumentMoniker": "Source\\Components\\Camera.cs",
+              "ToolTip": "D:\\Projects\\VSProjects\\GameEngine\\Source\\Components\\Camera.cs",
+              "RelativeToolTip": "Source\\Components\\Camera.cs",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAuwCgAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T12:37:01.799Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "SpriteVertexShader.vert",
+              "DocumentMoniker": "D:\\Projects\\VSProjects\\GameEngine\\Shaders\\SpriteVertexShader.vert",
+              "RelativeDocumentMoniker": "Shaders\\SpriteVertexShader.vert",
+              "ToolTip": "D:\\Projects\\VSProjects\\GameEngine\\Shaders\\SpriteVertexShader.vert",
+              "RelativeToolTip": "Shaders\\SpriteVertexShader.vert",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-07-07T12:34:05.725Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "SpriteFragmentShader.frag",
+              "DocumentMoniker": "D:\\Projects\\VSProjects\\GameEngine\\Shaders\\SpriteFragmentShader.frag",
+              "RelativeDocumentMoniker": "Shaders\\SpriteFragmentShader.frag",
+              "ToolTip": "D:\\Projects\\VSProjects\\GameEngine\\Shaders\\SpriteFragmentShader.frag",
+              "RelativeToolTip": "Shaders\\SpriteFragmentShader.frag",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-07-07T12:34:04.953Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "LineRenderer.cs",
+              "DocumentMoniker": "D:\\Projects\\VSProjects\\GameEngine\\Source\\Components\\LineRenderer.cs",
+              "RelativeDocumentMoniker": "Source\\Components\\LineRenderer.cs",
+              "ToolTip": "D:\\Projects\\VSProjects\\GameEngine\\Source\\Components\\LineRenderer.cs",
+              "RelativeToolTip": "Source\\Components\\LineRenderer.cs",
+              "ViewState": "AgIAAFgAAAAAAAAAAAAywGQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T12:29:59.471Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "SpriteRenderer.cs",
+              "DocumentMoniker": "D:\\Projects\\VSProjects\\GameEngine\\Source\\Components\\SpriteRenderer.cs",
+              "RelativeDocumentMoniker": "Source\\Components\\SpriteRenderer.cs",
+              "ToolTip": "D:\\Projects\\VSProjects\\GameEngine\\Source\\Components\\SpriteRenderer.cs",
+              "RelativeToolTip": "Source\\Components\\SpriteRenderer.cs",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAwwC0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T12:28:31.134Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Component.cs",
+              "DocumentMoniker": "D:\\Projects\\VSProjects\\GameEngine\\Source\\Components\\Component.cs",
+              "RelativeDocumentMoniker": "Source\\Components\\Component.cs",
+              "ToolTip": "D:\\Projects\\VSProjects\\GameEngine\\Source\\Components\\Component.cs",
+              "RelativeToolTip": "Source\\Components\\Component.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAADgvxsAAAA/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T12:27:38.11Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "World.cs",
+              "DocumentMoniker": "D:\\Projects\\VSProjects\\GameEngine\\Source\\Worlds\\World.cs",
+              "RelativeDocumentMoniker": "Source\\Worlds\\World.cs",
+              "ToolTip": "D:\\Projects\\VSProjects\\GameEngine\\Source\\Worlds\\World.cs",
+              "RelativeToolTip": "Source\\Worlds\\World.cs",
+              "ViewState": "AgIAAFkAAAAAAAAAAAAuwGkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T09:19:37.194Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "GameObject.cs",
+              "DocumentMoniker": "D:\\Projects\\VSProjects\\GameEngine\\Source\\GameObjects\\GameObject.cs",
+              "RelativeDocumentMoniker": "Source\\GameObjects\\GameObject.cs",
+              "ToolTip": "D:\\Projects\\VSProjects\\GameEngine\\Source\\GameObjects\\GameObject.cs",
+              "RelativeToolTip": "Source\\GameObjects\\GameObject.cs",
+              "ViewState": "AgIAAGYAAAAAAAAAAAD4v40AAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T09:17:57.931Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
