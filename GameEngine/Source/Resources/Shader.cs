@@ -1,8 +1,7 @@
-﻿using GameEngine.Resources;
-using OpenTK.Graphics.OpenGL;
+﻿using OpenTK.Graphics.OpenGL;
 using OpenTK.Mathematics;
 
-namespace GameEngine.Graphics
+namespace GameEngine.Resources
 {
     public sealed class Shader : IResource
     {

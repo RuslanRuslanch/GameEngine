@@ -1,7 +1,6 @@
 using System.Diagnostics;
 using GameEngine.GameObjects;
-using GameEngine.Inputs;
-using GameEngine.Sounds;
+using GameEngine.Resources;
 using OpenTK.Audio.OpenAL;
 using OpenTK.Windowing.GraphicsLibraryFramework;
 
@@ -39,7 +38,7 @@ namespace GameEngine.Components
 
         public override void OnUpdate(float delta)
         {
-            if (Input.Keyboard.IsKeyReleased(Keys.O))
+            if (GameObject.World.Core.Input.Keyboard.IsKeyReleased(Keys.O))
             {
                 SetLoop(true);
 

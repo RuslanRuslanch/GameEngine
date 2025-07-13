@@ -1,7 +1,7 @@
 ﻿using GameEngine.Components;
 using OpenTK.Mathematics;
 
-namespace GameEngine.Graphics
+namespace GameEngine.Resources
 {
     public sealed class Frustum
     {

@@ -1,4 +1,4 @@
-﻿namespace GameEngine.Graphics
+﻿namespace GameEngine.Resources
 {
     public sealed class Material
     {

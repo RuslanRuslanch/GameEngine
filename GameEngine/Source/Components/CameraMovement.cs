@@ -16,7 +16,7 @@ namespace GameEngine.Components
 
         public override void OnUpdate(float delta)
         {
-            var input = Input.Keyboard;
+            var input = GameObject.World.Core.Input.Keyboard;
             var direction = Vector3.Zero;
 
             if (input.IsKeyDown(Keys.W))

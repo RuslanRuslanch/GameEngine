@@ -1,7 +1,6 @@
-using System.IO;
 using OpenTK.Audio.OpenAL;
 
-namespace GameEngine.Sounds
+namespace GameEngine.Resources
 {
     public sealed class Sound
     {
@@ -18,9 +17,8 @@ namespace GameEngine.Sounds
 
         private int Generate(string path)
         {
-            // Загружаем WAV файл
-            byte[] wavBytes = File.ReadAllBytes(path);
-            // Парсим WAV
+            var wavBytes = File.ReadAllBytes(path);
+
             var (soundData, channels, bitsPerSample, sampleRate) = LoadWav(wavBytes);
 
             Channels = channels;
@@ -29,7 +27,7 @@ namespace GameEngine.Sounds
 
             int bufferId = AL.GenBuffer();
 
-            ALFormat format = GetALFormat(channels, bitsPerSample);
+            ALFormat format = GetFormat(channels, bitsPerSample);
 
             AL.BufferData<byte>(bufferId, format, soundData, sampleRate);
 
@@ -38,33 +36,37 @@ namespace GameEngine.Sounds
 
         private (byte[] soundData, int channels, int bitsPerSample, int sampleRate) LoadWav(byte[] wavBytes)
         {
-            using (var ms = new MemoryStream(wavBytes))
-            using (var reader = new BinaryReader(ms))
+            using (var stream = new MemoryStream(wavBytes))
+            
+            using (var reader = new BinaryReader(stream))
             {
                 // Читаем заголовок RIFF
-                string chunkID = new string(reader.ReadChars(4));
+                var chunkID = new string(reader.ReadChars(4));
+
                 if (chunkID != "RIFF")
                 {
                     throw new Exception("Некорректный формат WAV");
                 }
 
-                reader.ReadInt32(); // Размер файла
-                string format = new string(reader.ReadChars(4));
+                reader.ReadInt32();
+
+                var format = new string(reader.ReadChars(4));
+
                 if (format != "WAVE")
                 {
                     throw new Exception("Некорректный формат WAV");
                 }
 
                 // Читаем чанки до data
-                int channels = 0;
-                int sampleRate = 0;
-                int bitsPerSample = 0;
-                byte[] soundData = null;
+                var channels = 0;
+                var sampleRate = 0;
+                var bitsPerSample = 0;
+                var soundData = new byte[1];
 
                 while (reader.BaseStream.Position < reader.BaseStream.Length)
                 {
-                    string subChunkID = new string(reader.ReadChars(4));
-                    int subChunkSize = reader.ReadInt32();
+                    var subChunkID = new string(reader.ReadChars(4));
+                    var subChunkSize = reader.ReadInt32();
 
                     if (subChunkID == "fmt ")
                     {
@@ -92,13 +94,15 @@ namespace GameEngine.Sounds
                 }
 
                 if (soundData == null)
+                {
                     throw new Exception("Не удалось найти данные звука");
+                }
 
                 return (soundData, channels, bitsPerSample, sampleRate);
             }
         }
 
-        private ALFormat GetALFormat(int channels, int bitsPerSample)
+        private ALFormat GetFormat(int channels, int bitsPerSample)
         {
             if (channels == 1 && bitsPerSample == 8)
             {

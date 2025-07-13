@@ -1,5 +1,5 @@
 ﻿using GameEngine.GameObjects;
-using GameEngine.Graphics;
+using GameEngine.Resources;
 using OpenTK.Graphics.OpenGL;
 using OpenTK.Mathematics;
 
@@ -7,7 +7,7 @@ namespace GameEngine.Components
 {
     public sealed class LineRenderer : Component
     {
-        public Vector3[] Points { get; private set; }
+        public Vector3[] Points { get; private set; } = Array.Empty<Vector3>();
         public Color4 Color { get; private set; } = Color4.ForestGreen;
         public float Size { get; private set; } = 5f;
         
@@ -24,7 +24,7 @@ namespace GameEngine.Components
         {
             SetInitialized();
 
-            _shader = Resources.Resources.Get<Shader>("lineShader");
+            _shader = GameObject.World.Core.Resource.Get<Shader>("lineShader");
 
             CreateBuffers();
         }
@@ -79,6 +79,24 @@ namespace GameEngine.Components
             RecalculateBuffers();
         }
 
+        public void AddPoints(Vector3[] newPoints)
+        {
+            if (
+                newPoints.Length % 2 != 0 ||
+                newPoints.Length == 0)
+            {
+                throw new Exception("Количество точек долго быть четное, и не равно нулю");
+            }
+
+            var points = Points.ToList();
+
+            points.AddRange(newPoints);
+
+            Points = points.ToArray();
+
+            RecalculateBuffers();
+        }
+
         public void RecalculateBuffers()
         {
             DeleteBuffers();
@@ -92,7 +110,7 @@ namespace GameEngine.Components
                 return;
             }
 
-            var vertexObject = new VBO(Points, BufferUsageHint.StaticDraw).ID;
+            var vertexObject = new VBO(Points.ToArray(), BufferUsageHint.StaticDraw).ID;
             var vao = new LineVAO(vertexObject, _shader).ID;
 
             _vertexObject = vertexObject;

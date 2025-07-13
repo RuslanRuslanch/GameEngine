@@ -1,36 +1,37 @@
 ﻿using GameEngine.Bootstraps;
 using GameEngine.Inputs;
+using GameEngine.Resources;
 using GameEngine.Worlds;
 using OpenTK.Graphics.OpenGL;
 using OpenTK.Mathematics;
 using OpenTK.Windowing.Common;
 using OpenTK.Windowing.Desktop;
 
-namespace GameEngine.Graphics
+namespace GameEngine.Resources
 {
     public sealed class RenderWindow : GameWindow
     {
-        public static RenderWindow Instance { get; private set; }
-
-        private readonly World _world = new World();
-        private readonly ResourceBootstraper _resources = new ResourceBootstraper();
+        private readonly Core _core;
         private readonly TickSystem _tickSystem;
+        private readonly ResourceLoader _resourceLoader;
+        private readonly World _world;
 
         private float _timer;
 
         public RenderWindow(GameWindowSettings gameSettings, NativeWindowSettings nativeSettings) : base(gameSettings, nativeSettings)
         {
-            Instance = this;
+            _core = new Core(this);
 
+            _world = new World(_core);
             _tickSystem = new TickSystem(_world);
+            _resourceLoader = new ResourceLoader();
         }
 
         protected override void OnLoad()
         {
             base.OnLoad();
 
-            Input.Initialize(KeyboardState, MouseState);
-            _resources.Initialize();
+            _resourceLoader.Initialize(_core.Resource);
 
             _world.OnStart();
         }
@@ -39,9 +40,9 @@ namespace GameEngine.Graphics
         {
             base.OnUnload();
 
-            _world.OnFinish();
+            _resourceLoader.Deinitialize();
 
-            _resources.Deinitialize();
+            _world.OnFinish();
         }
 
         protected override void OnRenderFrame(FrameEventArgs args)

@@ -1,5 +1,5 @@
 ﻿using GameEngine.GameObjects;
-using GameEngine.Graphics;
+using GameEngine.Resources;
 using OpenTK.Mathematics;
 
 namespace GameEngine.Components
@@ -53,7 +53,7 @@ namespace GameEngine.Components
 
         public void UpdateProjectionMatrix()
         {
-            var windowSize = RenderWindow.Instance.ClientSize;
+            var windowSize = GameObject.World.Core.Window.ClientSize;
 
             var aspect = (float)windowSize.X / windowSize.Y;
             var fov = MathHelper.DegreesToRadians(FOV);

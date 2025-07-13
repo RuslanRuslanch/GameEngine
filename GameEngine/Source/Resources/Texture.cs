@@ -2,7 +2,7 @@
 using OpenTK.Graphics.OpenGL;
 using StbImageSharp;
 
-namespace GameEngine.Graphics
+namespace GameEngine.Resources
 {
     public sealed class Texture : IResource
     {

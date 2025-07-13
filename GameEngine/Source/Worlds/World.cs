@@ -1,4 +1,5 @@
-﻿using GameEngine.Components;
+﻿using System.Diagnostics;
+using GameEngine.Components;
 using GameEngine.GameObjects;
 using GameEngine.Resources;
 using OpenTK.Mathematics;
@@ -9,7 +10,14 @@ namespace GameEngine.Worlds
     {
         private readonly HashSet<GameObject> _gameObjects = new HashSet<GameObject>();
         
+        public readonly Core Core;
+
         public Camera MainCamera { get; private set; }
+
+        public World(Core core)
+        {
+            Core = core;
+        }
 
         public void Register(GameObject gameObject)
         {
@@ -100,8 +108,15 @@ namespace GameEngine.Worlds
         {
             RegisterCameraPrefab();
 
-            var camera = Resources.Resources.Get<Prefab>("cameraPrefab").GameObject;
+            var camera = Core.Resource.Get<Prefab>("cameraPrefab").GameObject;
+            var grid = SpawnGrid();
 
+            Register(grid);
+            Register(camera);
+        }
+
+        private GameObject SpawnGrid()
+        {
             var gameObject = new GameObject(this);
 
             gameObject.Transform.Move(0f, 0f, -1f);
@@ -109,21 +124,55 @@ namespace GameEngine.Worlds
             var renderer = gameObject.AddComponent<LineRenderer>();
             var source = gameObject.AddComponent<SoundSource>();
 
-            renderer.SetPoints(new[] { Vector3.Zero, Vector3.One });
+            renderer.SetColor(Color4.GhostWhite);
 
-            Register(gameObject);
-            Register(camera);
+            var stopwatch = Stopwatch.StartNew();
+
+            for (int x = -32; x < 32; x++)
+            {
+                for (int z = -32; z < 32; z++)
+                {
+                    var points = new Vector3[]
+                    {
+                        new Vector3(x, 0f, z),
+                        new Vector3(x + 1f, 0f, z),
+
+                        new Vector3(x + 1f, 0f, z),
+                        new Vector3(x + 1f, 0f, z + 1f),
+
+                        new Vector3(x + 1f, 0f, z + 1f),
+                        new Vector3(x, 0f, z),
+
+                        new Vector3(x, 0f, z),
+                        new Vector3(x, 0f, z + 1f),
+
+                        new Vector3(x, 0f, z + 1f),
+                        new Vector3(x + 1f, 0f, z + 1f),
+                    };
+
+                    renderer.AddPoints(points);
+                }
+            }
+
+            stopwatch.Stop();
+
+            Console.WriteLine($"Grid build time: {stopwatch.ElapsedMilliseconds}");
+
+            return gameObject;
         }
+
 
         private void RegisterCameraPrefab()
         {
             var camera = new GameObject(this);
 
+            camera.Transform.SetPosition(Vector3.UnitY * 3f);
+
             camera.AddTag("Main Camera");
             camera.AddComponent<Camera>();
             camera.AddComponent<CameraMovement>();
 
-            Resources.Resources.Save(new Prefab("cameraPrefab", camera));
+            Core.Resource.Save(new Prefab("cameraPrefab", camera));
         }
 
         public void OnFinish()

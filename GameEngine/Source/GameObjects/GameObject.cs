@@ -1,5 +1,5 @@
 ﻿using GameEngine.Components;
-using GameEngine.Graphics;
+using GameEngine.Resources;
 using GameEngine.Worlds;
 
 namespace GameEngine.GameObjects

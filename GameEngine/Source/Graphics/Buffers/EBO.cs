@@ -1,6 +1,6 @@
 ﻿using OpenTK.Graphics.OpenGL;
 
-namespace GameEngine.Graphics
+namespace GameEngine.Resources
 {
     public sealed class EBO
     {

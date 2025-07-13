@@ -9,17 +9,17 @@ namespace GameEngine.Animations
         public readonly float Length;
 
         public readonly Delegate ApplyChangesMethod;
-        public readonly object[] Args;
 
-        public AnimationSheet(Delegate method, params object[] args)
+        public AnimationSheet(GameObject gameObject, float length, Delegate method)
         {
+            GameObject = gameObject;
+            Length = length;
             ApplyChangesMethod = method;
-            Args = args;
         }
 
         public void ApplyChanges()
         {
-            ApplyChangesMethod?.DynamicInvoke(Args);
+            ApplyChangesMethod?.DynamicInvoke();
         }
     }
 }

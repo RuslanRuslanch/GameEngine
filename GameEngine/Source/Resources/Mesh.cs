@@ -1,7 +1,7 @@
 ﻿using GameEngine.Resources;
 using OpenTK.Mathematics;
 
-namespace GameEngine.Graphics
+namespace GameEngine.Resources
 {
     public class Mesh : IResource
     {

@@ -1,6 +1,6 @@
 ﻿using GameEngine.Resources;
 
-namespace GameEngine.Graphics
+namespace GameEngine.Resources
 {
     public sealed class Font
     {

@@ -1,5 +1,5 @@
 ﻿using GameEngine.GameObjects;
-using GameEngine.Graphics;
+using GameEngine.Resources;
 using GameEngine.Resources;
 using OpenTK.Graphics.OpenGL;
 using OpenTK.Mathematics;
@@ -26,8 +26,8 @@ namespace GameEngine.Components
         {
             SetInitialized();
 
-            var shader = Resources.Resources.Get<Shader>("spriteShader");
-            var texture = Resources.Resources.Get<Texture>("testTexture");
+            var shader = GameObject.World.Core.Resource.Get<Shader>("spriteShader");
+            var texture = GameObject.World.Core.Resource.Get<Texture>("testTexture");
 
             var material = new Material(texture, shader);
 
@@ -69,7 +69,7 @@ namespace GameEngine.Components
 
         private void CreateBuffers()
         {
-            var mesh = Resources.Resources.Get<Mesh>("spriteMesh");
+            var mesh = GameObject.World.Core.Resource.Get<Mesh>("spriteMesh");
 
             var uvs = new Vector2[]
             {

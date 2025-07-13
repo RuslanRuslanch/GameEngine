@@ -1,12 +1,12 @@
-using GameEngine.Graphics;
+using GameEngine.Resources;
 using GameEngine.Resources;
 using OpenTK.Mathematics;
 
 namespace GameEngine.Bootstraps
 {
-    public sealed class ResourceBootstraper
+    public sealed class ResourceLoader
     {
-        public void Initialize()
+        public void Initialize(Resource resource)
         {
             var vertices = new Vector3[]
             {
@@ -28,10 +28,10 @@ namespace GameEngine.Bootstraps
                 -Vector3.UnitZ,
             };
 
-            Resources.Resources.Save(new Mesh("spriteMesh", vertices, normals, indecies));
-            Resources.Resources.SaveAndLoad("lineShader", ResourceType.Shader, new[] { @"Shaders\LineWorldVertexShader.vert", @"Shaders\LineWorldFragmentShader.frag" });
-            Resources.Resources.SaveAndLoad("spriteShader", ResourceType.Shader, new[] { @"Shaders\SpriteVertexShader.vert", @"Shaders\SpriteFragmentShader.frag" });
-            Resources.Resources.SaveAndLoad("testTexture", ResourceType.Texture, new[] { @"Textures\Texture.png" });
+            resource.Save(new Mesh("spriteMesh", vertices, normals, indecies));
+            resource.SaveAndLoad("lineShader", ResourceType.Shader, new[] { @"Shaders\LineWorldVertexShader.vert", @"Shaders\LineWorldFragmentShader.frag" });
+            resource.SaveAndLoad("spriteShader", ResourceType.Shader, new[] { @"Shaders\SpriteVertexShader.vert", @"Shaders\SpriteFragmentShader.frag" });
+            resource.SaveAndLoad("testTexture", ResourceType.Texture, new[] { @"Textures\Texture.png" });
         }
 
         public void Deinitialize()

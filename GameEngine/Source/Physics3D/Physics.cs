@@ -3,7 +3,7 @@ using OpenTK.Mathematics;
 
 namespace GameEngine.Physics3D
 {
-    public sealed class Physcis
+    public sealed class Physics
     {
         public const float StepLength = 0.1f;
 

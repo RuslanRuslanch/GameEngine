@@ -1,13 +1,13 @@
-﻿using GameEngine.Graphics;
+﻿using GameEngine.Resources;
 using OpenTK.Graphics.OpenGL;
 
 namespace GameEngine.Resources
 {
-    public static class Resources
+    public class Resource
     {
-        private readonly static HashSet<IResource> _resources = new HashSet<IResource>();
+        private readonly HashSet<IResource> _resources = new HashSet<IResource>();
 
-        public static T Get<T>(string id) where T : IResource
+        public T Get<T>(string id) where T : IResource
         {
             var resource = _resources.FirstOrDefault(r => r.ID == id);
 
@@ -19,7 +19,7 @@ namespace GameEngine.Resources
             return (T)resource;
         }
 
-        public static void Save(IResource resource)
+        public void Save(IResource resource)
         {
             if (_resources.Contains(resource))
             {
@@ -29,7 +29,7 @@ namespace GameEngine.Resources
             _resources.Add(resource);
         }
 
-        public static IResource Load(string id, ResourceType type, string[] paths)
+        public IResource Load(string id, ResourceType type, params string[] paths)
         {
             if (type == ResourceType.Texture)
             {
@@ -43,7 +43,7 @@ namespace GameEngine.Resources
             throw new Exception("This resource type is not supported now");
         }
 
-        public static IResource SaveAndLoad(string id, ResourceType type, string[] paths)
+        public IResource SaveAndLoad(string id, ResourceType type, params string[] paths)
         {
             var resource = Load(id, type, paths);
 
@@ -52,7 +52,7 @@ namespace GameEngine.Resources
             return resource;
         }
 
-        public static void Delete(IResource resource)
+        public void Delete(IResource resource)
         {
             if (resource.Type == ResourceType.Texture)
             {
