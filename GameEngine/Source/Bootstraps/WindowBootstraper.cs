@@ -1,4 +1,4 @@
-using GameEngine.Resources;
+using GameEngine.Graphics;
 using OpenTK.Windowing.Desktop;
 
 namespace GameEngine.Bootstraps

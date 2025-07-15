@@ -1,8 +1,8 @@
 namespace GameEngine.FileSystems
 {
-    public static class FileSystem
+    public class FileSystem
     {
-        public static void GenerateMetaFile(string file)
+        public void GenerateMetaFile(string file)
         {
             
         }

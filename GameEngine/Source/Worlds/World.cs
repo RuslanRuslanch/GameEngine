@@ -8,8 +8,9 @@ namespace GameEngine.Worlds
 {
     public sealed class World
     {
-        private readonly HashSet<GameObject> _gameObjects = new HashSet<GameObject>();
-        
+        private readonly List<GameObject> _gameObjects = new List<GameObject>();
+        private readonly List<GameObject> _registerTargets = new List<GameObject>();
+
         public readonly Core Core;
 
         public Camera MainCamera { get; private set; }
@@ -19,7 +20,17 @@ namespace GameEngine.Worlds
             Core = core;
         }
 
-        public void Register(GameObject gameObject)
+        public void SendRegisterRequest(GameObject gameObject)
+        {
+            if (_registerTargets.Contains(gameObject))
+            {
+                return;
+            }
+
+            _registerTargets.Add(gameObject);
+        }
+
+        private void Register(GameObject gameObject)
         {
             if (_gameObjects.Contains(gameObject))
             {
@@ -36,7 +47,7 @@ namespace GameEngine.Worlds
             _gameObjects.Add(gameObject);
         }
 
-        public void Unregister(GameObject gameObject)
+        private void Unregister(GameObject gameObject)
         {
             gameObject.OnFinish();
 
@@ -45,17 +56,17 @@ namespace GameEngine.Worlds
 
         public void UnregisterAll()
         {
-            foreach (var gameObject in _gameObjects)
+            for (int i = 0; i < _gameObjects.Count; i++)
             {
-                Unregister(gameObject);
+                Unregister(_gameObjects[i]);
             }
         }
 
         public T FindByType<T>() where T : Component
         {
-            foreach (var gameObject in _gameObjects)
+            for (int i = 0; i < _gameObjects.Count; i++)
             {
-                if (gameObject.TryGetComponent(out T result))
+                if (_gameObjects[i].TryGetComponent(out T result))
                 {
                     return result;
                 }
@@ -66,60 +77,90 @@ namespace GameEngine.Worlds
 
         public GameObject FindByTag(string tag)
         {
-            foreach (var gameObject in _gameObjects)
+            for (int i = 0; i < _gameObjects.Count; i++)
             {
-                if (gameObject.HasTag(tag))
+                if (_gameObjects[i].HasTag(tag))
                 {
-                    return gameObject;
+                    return _gameObjects[i];
                 }
             }
 
             return null;
         }
 
+        public void HandleRegisterRequests()
+        {
+            for (int i = 0; i < _registerTargets.Count; i++)
+            {
+                Register(_registerTargets[i]);
+
+                _registerTargets.RemoveAt(i);
+            }
+        }
+
         public void OnUpdate(float delta)
         {
-            foreach (var gameObject in _gameObjects)
+            for (int i = 0; i < _gameObjects.Count; i++)
             {
-                gameObject.OnUpdate(delta);
+                _gameObjects[i].OnUpdate(delta);
             }
         }
 
         public void OnRender()
         {
-            foreach (var gameObject in _gameObjects)
+            if (MainCamera == null)
             {
-                if (gameObject.CanRender(MainCamera.Frustum))
+                return;
+            }
+
+            for (int i = 0; i < _gameObjects.Count; i++)
+            {
+                if (_gameObjects[i].CanRender(MainCamera.Frustum) == false)
                 {
-                    gameObject.OnRender();
+                    continue;
                 }
+
+                _gameObjects[i].OnRender();
             }
         }
 
         public void OnTick()
         {
-            foreach (var gameObject in _gameObjects)
+            for (int i = 0; i < _gameObjects.Count; i++)
             {
-                gameObject.OnTick();
+                _gameObjects[i].OnTick();
             }
         }
 
         public void OnStart()
         {
             RegisterCameraPrefab();
+            RegisterTestPrefab();
 
             var camera = Core.Resource.Get<Prefab>("cameraPrefab").GameObject;
-            var grid = SpawnGrid();
 
-            Register(grid);
-            Register(camera);
+            var grid = SpawnGrid();
+            var character = new GameObject(this);
+
+            character.Transform.SetScale(new Vector3(1f, 2f, 1f));
+
+            character.AddComponent<SpriteRenderer>();
+            character.AddComponent<CharacterMovement>();
+            character.AddComponent<ObjectSpawner>();
+
+            SendRegisterRequest(grid);
+            SendRegisterRequest(character);
+            SendRegisterRequest(camera);
+        }
+
+        public void OnFinish()
+        {
+            UnregisterAll();
         }
 
         private GameObject SpawnGrid()
         {
             var gameObject = new GameObject(this);
-
-            gameObject.Transform.Move(0f, 0f, -1f);
 
             var renderer = gameObject.AddComponent<LineRenderer>();
             var source = gameObject.AddComponent<SoundSource>();
@@ -166,18 +207,23 @@ namespace GameEngine.Worlds
         {
             var camera = new GameObject(this);
 
-            camera.Transform.SetPosition(Vector3.UnitY * 3f);
+            camera.Transform.Move(Vector3.UnitY * 3f);
+            camera.Transform.Move(Vector3.UnitZ * 5f);
 
             camera.AddTag("Main Camera");
             camera.AddComponent<Camera>();
-            camera.AddComponent<CameraMovement>();
 
             Core.Resource.Save(new Prefab("cameraPrefab", camera));
         }
 
-        public void OnFinish()
+        private void RegisterTestPrefab()
         {
-            UnregisterAll();
+            var gameObject = new GameObject(this);
+
+            //gameObject.AddComponent<LineRenderer>().SetPoints(new Vector3[] {Vector3.Zero, Vector3.UnitX});
+            gameObject.AddComponent<SpriteRenderer>();
+
+            Core.Resource.Save(new Prefab("testPrefab", gameObject));
         }
     }
 }

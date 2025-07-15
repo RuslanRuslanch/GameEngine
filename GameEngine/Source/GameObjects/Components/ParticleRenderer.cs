@@ -1,4 +1,6 @@
-﻿using GameEngine.GameObjects;
+﻿using System.Diagnostics;
+using GameEngine.GameObjects;
+using GameEngine.Graphics;
 using GameEngine.Resources;
 using OpenTK.Graphics.OpenGL;
 using OpenTK.Mathematics;
@@ -26,7 +28,7 @@ namespace GameEngine.Components
             SetInitialized();
 
             var shader = GameObject.World.Core.Resource.Get<Shader>("spriteShader");
-            var texture = GameObject.World.Core.Resource.Get<Texture>("testTexture");
+            var texture = GameObject.World.Core.Resource.Get<Texture>("dirtTexture");
 
             var material = new Material(texture, shader);
 
@@ -41,7 +43,7 @@ namespace GameEngine.Components
             {
                 Stop();
                 SetMaxParticleCount(MaxParticleCount + 1000);
-                Start();
+                Play();
 
                 Console.WriteLine($"Current particle count: {MaxParticleCount}");
             }
@@ -55,6 +57,8 @@ namespace GameEngine.Components
             {
                 _particles[i].Move(Vector3.UnitY * delta * 0f);
             }
+
+            Console.WriteLine("Particles updated");
         }
 
         public override void OnPreRender()
@@ -78,11 +82,17 @@ namespace GameEngine.Components
                 return;
             }
 
-            Material.Shader.Bind();
-            Material.Texture.Bind();
+            GameObject.World.Core.Render.Bind(Material);
 
             GL.BindVertexArray(_vao);
 
+            RenderParticles();
+
+            GL.BindVertexArray(0);
+        }
+
+        private void RenderParticles()
+        {
             for (int i = 0; i < MaxParticleCount; i++)
             {
                 var frustum = GameObject.World.MainCamera.Frustum;
@@ -95,18 +105,19 @@ namespace GameEngine.Components
                 var model = _particles[i].ModelMatrix;
 
                 Material.Shader.Load("model", ref model);
-                
+
                 GL.DrawElements(PrimitiveType.Triangles, 6, DrawElementsType.UnsignedInt, IntPtr.Zero);
             }
         }
 
-        public void Start()
+
+        public void Play()
         {
             IsStarted = true;
 
             for (int i = 0; i < MaxParticleCount; i++)
             {
-                var particle = new Particle(GameObject.Transform.Position + Vector3.UnitX * i * 0.3f, 0.25f);
+                var particle = new Particle(GameObject.Transform.Position, GameObject.Transform.Scale.X);
 
                 _particles.Add(particle);
             }
@@ -142,52 +153,6 @@ namespace GameEngine.Components
             var ebo = new EBO(mesh.Indecies, BufferUsageHint.StaticDraw).ID;
 
             _vao = new DefaultVAO(ebo, vertexObject, uvObject, normalObject, Material.Shader).ID;
-        }
-    }
-
-    public class Particle
-    {
-        public readonly float Scale;
-
-        public Matrix4 ModelMatrix { get; private set; } = Matrix4.Identity;
-
-        public Vector3 Position { get; private set; }
-
-        public Particle(Vector3 position, float scale)
-        {
-            Position = position;
-            Scale = scale;
-
-            ReloadModelMatrix();
-        }
-
-        public void Move(float x, float y, float z)
-        {
-            Move(new Vector3(x, y, z));
-        }
-
-        public void Move(Vector3 velocity)
-        {
-            Position += velocity;
-
-            ReloadModelMatrix();
-        }
-
-        private void ReloadModelMatrix()
-        {
-            var translation = Matrix4.CreateTranslation(Position);
-            var scale = Matrix4.CreateScale(Scale, Scale, 1f);
-
-            ModelMatrix =
-                scale *
-                translation;
-        }
-
-        public bool CanRender(Frustum frustum)
-        {
-            var aabb = new AABB(Position, Position + new Vector3(Scale, Scale, 1f));
-
-            return frustum.InFrustum(aabb);
         }
     }
 }

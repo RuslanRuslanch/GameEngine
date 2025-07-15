@@ -1,7 +1,7 @@
 ﻿using OpenTK.Graphics.OpenGL;
 using OpenTK.Mathematics;
 
-namespace GameEngine.Resources
+namespace GameEngine.Graphics
 {
     public sealed class VBO
     {

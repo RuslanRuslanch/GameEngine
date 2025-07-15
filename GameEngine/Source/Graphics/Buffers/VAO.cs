@@ -1,4 +1,6 @@
-﻿namespace GameEngine.Resources
+﻿using GameEngine.Resources;
+
+namespace GameEngine.Graphics
 {
     public abstract class VAO
     {

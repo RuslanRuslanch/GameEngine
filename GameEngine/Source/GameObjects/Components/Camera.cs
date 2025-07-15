@@ -21,13 +21,13 @@ namespace GameEngine.Components
 
         public override void OnStart()
         {
+            base.OnStart();
+            
             UpdateProjectionMatrix();
             UpdateViewMatrix();
 
             Frustum = new Frustum(this);
             Frustum.Initialize();
-
-            SetInitialized();
         }
 
         public override void OnPreRender()
@@ -38,6 +38,7 @@ namespace GameEngine.Components
         public override void OnUpdate(float delta)
         {
             UpdateViewMatrix();
+
             Frustum.RecalculatePlanes();
         }
 
@@ -49,6 +50,8 @@ namespace GameEngine.Components
             }
 
             FOV = fov;
+
+            UpdateProjectionMatrix();
         }
 
         public void UpdateProjectionMatrix()

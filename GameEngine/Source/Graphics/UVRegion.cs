@@ -1,6 +1,6 @@
 ﻿using OpenTK.Mathematics;
 
-namespace GameEngine.Resources
+namespace GameEngine.Graphics
 {
     public struct UVRegion
     {

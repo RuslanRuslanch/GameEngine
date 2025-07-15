@@ -1,4 +1,5 @@
 ﻿using GameEngine.GameObjects;
+using GameEngine.Graphics;
 using GameEngine.Resources;
 using OpenTK.Graphics.OpenGL;
 using OpenTK.Mathematics;
@@ -10,8 +11,9 @@ namespace GameEngine.Components
         public Vector3[] Points { get; private set; } = Array.Empty<Vector3>();
         public Color4 Color { get; private set; } = Color4.ForestGreen;
         public float Size { get; private set; } = 5f;
-        
+
         private Shader _shader;
+        private AABB _aabb;
 
         private int _vao;
         private int _vertexObject;
@@ -22,7 +24,7 @@ namespace GameEngine.Components
 
         public override void OnStart()
         {
-            SetInitialized();
+            base.OnStart();
 
             _shader = GameObject.World.Core.Resource.Get<Shader>("lineShader");
 
@@ -49,17 +51,23 @@ namespace GameEngine.Components
 
         public override void OnRender()
         {
-            _shader.Bind();
+            GameObject.World.Core.Render.Bind(_shader);
 
             GL.BindVertexArray(_vao);
             GL.DrawArrays(PrimitiveType.Lines, 0, Points.Length);
+            GL.BindVertexArray(0);
+        }
+
+        public override bool CanRender(Frustum frustum)
+        {
+            return frustum.InFrustum(_aabb);
         }
 
         public void SetColor(Color4 color)
         {
             Color = color;
         }
-        
+
         public void SetSize(float size)
         {
             Size = size;
@@ -77,6 +85,7 @@ namespace GameEngine.Components
             Points = points;
 
             RecalculateBuffers();
+            RecalculateAABB();
         }
 
         public void AddPoints(Vector3[] newPoints)
@@ -95,6 +104,7 @@ namespace GameEngine.Components
             Points = points.ToArray();
 
             RecalculateBuffers();
+            RecalculateAABB();
         }
 
         public void RecalculateBuffers()
@@ -129,6 +139,35 @@ namespace GameEngine.Components
 
             GL.BindVertexArray(0);
             GL.DeleteVertexArray(_vao);
+        }
+
+        public void RecalculateAABB()
+        {
+            var (min, max) = GetAABBSize();
+            var position = GameObject.Transform.Position;
+
+            _aabb = new AABB(position + min, position + max);
+        }
+
+        private (Vector3 min, Vector3 max) GetAABBSize()
+        {
+            var min = Points[0];
+            var max = Points[0];
+
+            foreach (var point in Points)
+            {
+                if (point.X < min.X || point.Y < min.Y || point.Z < min.Z)
+                {
+                    min = point;
+                }
+
+                if (point.X > max.X || point.Y > max.Y || point.Z > max.Z)
+                {
+                    max = point;
+                }
+            }
+
+            return (min, max);
         }
     }
 }

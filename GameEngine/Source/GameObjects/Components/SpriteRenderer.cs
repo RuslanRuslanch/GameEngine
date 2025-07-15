@@ -1,5 +1,5 @@
 ﻿using GameEngine.GameObjects;
-using GameEngine.Resources;
+using GameEngine.Graphics;
 using GameEngine.Resources;
 using OpenTK.Graphics.OpenGL;
 using OpenTK.Mathematics;
@@ -27,7 +27,7 @@ namespace GameEngine.Components
             SetInitialized();
 
             var shader = GameObject.World.Core.Resource.Get<Shader>("spriteShader");
-            var texture = GameObject.World.Core.Resource.Get<Texture>("testTexture");
+            var texture = GameObject.World.Core.Resource.Get<Texture>("characterTexture");
 
             var material = new Material(texture, shader);
 
@@ -60,11 +60,24 @@ namespace GameEngine.Components
 
         public override void OnRender()
         {
-            Material.Shader.Bind();
-            Material.Texture.Bind();
+            GameObject.World.Core.Render.Bind(Material);
 
             GL.BindVertexArray(_vao);
-            GL.DrawElements(PrimitiveType.Triangles, 6, DrawElementsType.UnsignedInt, IntPtr.Zero);
+            GL.DrawElements(PrimitiveType.Triangles, 6, DrawElementsType.UnsignedInt, 0);
+            GL.BindVertexArray(0);
+        }
+
+        public void SetUV(UVRegion region)
+        {
+            _uvRegion = region;
+
+            DeleteBuffers();
+            CreateBuffers();
+        }
+
+        public void SetMaterial(Material material)
+        {
+            Material = material;
         }
 
         private void CreateBuffers()
@@ -104,19 +117,6 @@ namespace GameEngine.Components
 
             GL.BindVertexArray(0);
             GL.DeleteVertexArray(_vao);
-        }
-
-        public void SetUV(UVRegion region)
-        {
-            _uvRegion = region;
-
-            DeleteBuffers();
-            CreateBuffers();
-        }
-
-        public void SetMaterial(Material material)
-        {
-            Material = material;
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using GameEngine.Worlds;
 
-namespace GameEngine.Resources
+namespace GameEngine
 {
     public sealed class TickSystem
     {

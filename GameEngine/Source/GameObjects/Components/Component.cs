@@ -23,7 +23,7 @@ namespace GameEngine.Components
         public virtual void OnPreRender() { }
         public virtual void OnRender() { }
         public virtual void OnTick() { }
-        public virtual void OnStart() { }
+        public virtual void OnStart() => SetInitialized();
         public virtual void OnFinish() { }
         public virtual bool CanRender(Frustum frustum) => true;
     }

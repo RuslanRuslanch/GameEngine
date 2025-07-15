@@ -35,7 +35,10 @@
     <None Update="Sounds\Sound.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Textures\Texture.png">
+    <None Update="Textures\Dirt.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Textures\Character.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

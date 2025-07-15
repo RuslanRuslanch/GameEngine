@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Numerics;
 using GameEngine.GameObjects;
 using GameEngine.Resources;
 using OpenTK.Audio.OpenAL;
@@ -38,6 +39,10 @@ namespace GameEngine.Components
 
         public override void OnUpdate(float delta)
         {
+            var position = GameObject.Transform.Position;
+
+            AL.Source(_id, ALSource3f.Position, position.X, position.Y, position.Z);
+
             if (GameObject.World.Core.Input.Keyboard.IsKeyReleased(Keys.O))
             {
                 SetLoop(true);
@@ -52,6 +57,22 @@ namespace GameEngine.Components
             IsLoop = state;
 
             AL.Source(_id, ALSourceb.Looping, IsLoop);
+        }
+
+        public void SetDirection(Vector3 direction)
+        {
+            AL.Source(_id, ALSource3f.Direction, direction.X, direction.Y, direction.Z);
+        }
+
+        public void SetMaxDistance(float distance)
+        {
+            if (distance < 0f)
+            {
+                throw new Exception($"Hear distance must be more or equal 0");
+            }
+
+            AL.Source(_id, ALSourcef.MaxDistance, distance);
+            AL.Source(_id, ALSourcei.SourceType, (int)ALSourceType.Static);
         }
 
         public void SetSound(Sound sound)

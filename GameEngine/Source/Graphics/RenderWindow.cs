@@ -1,13 +1,11 @@
 ﻿using GameEngine.Bootstraps;
-using GameEngine.Inputs;
-using GameEngine.Resources;
 using GameEngine.Worlds;
 using OpenTK.Graphics.OpenGL;
 using OpenTK.Mathematics;
 using OpenTK.Windowing.Common;
 using OpenTK.Windowing.Desktop;
 
-namespace GameEngine.Resources
+namespace GameEngine.Graphics
 {
     public sealed class RenderWindow : GameWindow
     {
@@ -71,6 +69,8 @@ namespace GameEngine.Resources
 
             var delta = (float)args.Time;
 
+            _world.HandleRegisterRequests();
+            
             _world.OnUpdate(delta);
             _tickSystem.OnTick(delta);
 

@@ -6,8 +6,8 @@ namespace GameEngine.GameObjects
 {
     public sealed class GameObject
     {
-        private readonly HashSet<Component> _components = new HashSet<Component>();
-        private readonly HashSet<string> _tags = new HashSet<string>();
+        public readonly List<Component> Components = new List<Component>();
+        public readonly List<string> Tags = new List<string>();
 
         public readonly Transform Transform;
         
@@ -27,7 +27,7 @@ namespace GameEngine.GameObjects
                 return;
             }
 
-            _tags.Add(tag);
+            Tags.Add(tag);
         }
 
         public void RemoveTag(string tag)
@@ -37,52 +37,52 @@ namespace GameEngine.GameObjects
                 return;
             }
 
-            _tags.Remove(tag);
+            Tags.Remove(tag);
         }
 
         public bool HasTag(string tag)
         {
-            return _tags.Contains(tag);
+            return Tags.Contains(tag);
         }
 
         public void OnUpdate(float delta)
         {
-            foreach (var component in _components)
+            for (int i = 0; i < Components.Count; i++)
             {
-                component.OnUpdate(delta);
+                Components[i].OnUpdate(delta);
             }
         }
 
         public void OnRender()
         {
-            foreach (var component in _components)
+            for (int i = 0; i < Components.Count; i++)
             {
-                component.OnPreRender();
-                component.OnRender();
+                Components[i].OnPreRender();
+                Components[i].OnRender();
             }
         }
 
         public void OnTick()
         {
-            foreach (var component in _components)
+            for (int i = 0; i < Components.Count; i++)
             {
-                component.OnTick();
+                Components[i].OnTick();
             }
         }
 
         public void OnStart()
         {
-            foreach (var component in _components)
+            for (int i = 0; i < Components.Count; i++)
             {
-                component.OnStart();
+                Components[i].OnStart();
             }
         }
 
         public void OnFinish()
         {
-            foreach (var component in _components)
+            for (int i = 0; i < Components.Count; i++)
             {
-                component.OnFinish();
+                Components[i].OnFinish();
             }
         }
 
@@ -105,7 +105,7 @@ namespace GameEngine.GameObjects
 
         public T GetComponent<T>() where T : Component
         {
-            return (T)_components.FirstOrDefault(c => c is T);
+            return (T)Components.FirstOrDefault(c => c is T);
         }
 
         public T AddComponent<T>() where T : Component
@@ -117,9 +117,19 @@ namespace GameEngine.GameObjects
 
             var instance = (T)Activator.CreateInstance(typeof(T), args: this);
 
-            _components.Add(instance);
+            Components.Add(instance);
 
             return instance;
+        }
+
+        public void AddComponent(Component instance)
+        {
+            if (Components.Contains(instance))
+            {
+                return;
+            }
+
+            Components.Add(instance);
         }
 
         public void RemoveComponent<T>() where T : Component
@@ -129,14 +139,14 @@ namespace GameEngine.GameObjects
                 throw new NullReferenceException($"{this} hasn't {typeof(T)} component");
             }
 
-            _components.Remove(result);
+            Components.Remove(result);
         }
 
         public bool CanRender(Frustum frustum)
         {
-            foreach (var component in _components)
+            for (int i = 0; i < Components.Count; i++)
             {
-                if (component.CanRender(frustum))
+                if (Components[i].CanRender(frustum))
                 {
                     continue;
                 }

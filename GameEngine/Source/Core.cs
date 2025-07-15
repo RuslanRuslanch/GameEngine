@@ -2,7 +2,8 @@ using GameEngine.Debugs;
 using GameEngine.Resources;
 using GameEngine.Inputs;
 using GameEngine.Physics3D;
-using GameEngine.Resources;
+using GameEngine.FileSystems;
+using GameEngine.Graphics;
 
 namespace GameEngine
 {
@@ -11,6 +12,8 @@ namespace GameEngine
         public readonly Gizmos Gizmos = new Gizmos();
         public readonly Physics Physics = new Physics();
         public readonly Resource Resource = new Resource();
+        public readonly FileSystem FileSystem = new FileSystem();
+        public readonly RenderSystem Render = new RenderSystem();
         public readonly RenderWindow Window;
         public readonly Input Input;
 

@@ -29,9 +29,10 @@ namespace GameEngine.Bootstraps
             };
 
             resource.Save(new Mesh("spriteMesh", vertices, normals, indecies));
-            resource.SaveAndLoad("lineShader", ResourceType.Shader, new[] { @"Shaders\LineWorldVertexShader.vert", @"Shaders\LineWorldFragmentShader.frag" });
-            resource.SaveAndLoad("spriteShader", ResourceType.Shader, new[] { @"Shaders\SpriteVertexShader.vert", @"Shaders\SpriteFragmentShader.frag" });
-            resource.SaveAndLoad("testTexture", ResourceType.Texture, new[] { @"Textures\Texture.png" });
+            resource.SaveAndLoad("lineShader", ResourceType.Shader, @"Shaders\LineWorldVertexShader.vert", @"Shaders\LineWorldFragmentShader.frag");
+            resource.SaveAndLoad("spriteShader", ResourceType.Shader, @"Shaders\SpriteVertexShader.vert", @"Shaders\SpriteFragmentShader.frag" );
+            resource.SaveAndLoad("dirtTexture", ResourceType.Texture, @"Textures\Dirt.png" );
+            resource.SaveAndLoad("characterTexture", ResourceType.Texture, @"Textures\Character.png" );
         }
 
         public void Deinitialize()

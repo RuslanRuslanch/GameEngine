@@ -52,7 +52,6 @@ D:\GitHubRepositories\GameEngine\GameEngine\bin\Debug\net8.0\Shaders\SpriteFragm
 D:\GitHubRepositories\GameEngine\GameEngine\bin\Debug\net8.0\Shaders\SpriteVertexShader.vert
 D:\GitHubRepositories\GameEngine\GameEngine\bin\Debug\net8.0\Shaders\UIVertexShader.vert
 D:\GitHubRepositories\GameEngine\GameEngine\bin\Debug\net8.0\Sounds\Sound.wav
-D:\GitHubRepositories\GameEngine\GameEngine\bin\Debug\net8.0\Textures\Texture.png
 D:\GitHubRepositories\GameEngine\GameEngine\bin\Debug\net8.0\GameEngine.deps.json
 D:\GitHubRepositories\GameEngine\GameEngine\bin\Debug\net8.0\GameEngine.runtimeconfig.json
 D:\GitHubRepositories\GameEngine\GameEngine\bin\Debug\net8.0\GameEngine.dll
@@ -92,3 +91,5 @@ D:\GitHubRepositories\GameEngine\GameEngine\obj\Debug\net8.0\refint\GameEngine.d
 D:\GitHubRepositories\GameEngine\GameEngine\obj\Debug\net8.0\GameEngine.pdb
 D:\GitHubRepositories\GameEngine\GameEngine\obj\Debug\net8.0\GameEngine.genruntimeconfig.cache
 D:\GitHubRepositories\GameEngine\GameEngine\obj\Debug\net8.0\ref\GameEngine.dll
+D:\GitHubRepositories\GameEngine\GameEngine\bin\Debug\net8.0\Textures\Character.png
+D:\GitHubRepositories\GameEngine\GameEngine\bin\Debug\net8.0\Textures\Dirt.png
