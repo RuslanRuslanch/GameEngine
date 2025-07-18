@@ -21,7 +21,9 @@ namespace GameEngine.Components
 
         public override unsafe void OnStart()
         {
-            _sound = new Sound(@"Sounds\Sound.wav");
+            base.OnStart();
+            
+            _sound = GameObject.World.Core.Resource.Get<Sound>("Sound");
 
             _id = AL.GenSource();
 
@@ -87,7 +89,7 @@ namespace GameEngine.Components
             var stopwatch = new Stopwatch();
             stopwatch.Start();
 
-            AL.Source(_id, ALSourcei.Buffer, sound.ID);
+            AL.Source(_id, ALSourcei.Buffer, sound.ALObject);
             AL.SourcePlay(_id);
 
             stopwatch.Stop();

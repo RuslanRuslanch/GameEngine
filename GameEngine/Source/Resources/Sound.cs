@@ -2,17 +2,20 @@ using OpenTK.Audio.OpenAL;
 
 namespace GameEngine.Resources
 {
-    public sealed class Sound
+    public sealed class Sound : IResource
     {
-        public readonly int ID;
+        public ResourceType Type => ResourceType.Sound;
 
         public int Channels { get; private set; }
         public int BitsPerSample { get; private set; }
         public int SampleRate { get; private set; }
+        public string ID { get; private set; }
+        public int ALObject { get; private set; }
 
-        public Sound(string path)
+        public Sound(string id, string path)
         {
-            ID = Generate(path);
+            ID = id;
+            ALObject = Generate(path);
         }
 
         private int Generate(string path)
@@ -123,5 +126,11 @@ namespace GameEngine.Resources
 
             throw new Exception("Неудалось определить формат звука");
         }
+
+        public void Delete()
+        {
+            AL.DeleteBuffer(ALObject);
+        }
+
     }
 }

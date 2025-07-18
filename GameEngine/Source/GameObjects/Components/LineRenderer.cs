@@ -26,7 +26,7 @@ namespace GameEngine.Components
         {
             base.OnStart();
 
-            _shader = GameObject.World.Core.Resource.Get<Shader>("lineShader");
+            _shader = GameObject.World.Core.Resource.Get<Shader>("LineShader");
 
             CreateBuffers();
         }

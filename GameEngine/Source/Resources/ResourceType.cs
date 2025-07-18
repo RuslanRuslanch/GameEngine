@@ -7,7 +7,7 @@
         Shader,
         Mesh,
         Font,
-        Audio,
+        Sound,
         Prefab,
     }
 }

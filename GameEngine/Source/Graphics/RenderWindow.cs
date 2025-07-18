@@ -1,4 +1,4 @@
-﻿using GameEngine.Bootstraps;
+﻿using GameEngine.Resources;
 using GameEngine.Worlds;
 using OpenTK.Graphics.OpenGL;
 using OpenTK.Mathematics;
@@ -29,6 +29,7 @@ namespace GameEngine.Graphics
         {
             base.OnLoad();
 
+            _core.FileSystem.LoadResources(@"D:\GitHubRepositories\GameEngine\GameEngine\Resources");
             _resourceLoader.Initialize(_core.Resource);
 
             _world.OnStart();
@@ -38,9 +39,8 @@ namespace GameEngine.Graphics
         {
             base.OnUnload();
 
-            _resourceLoader.Deinitialize();
-
             _world.OnFinish();
+            _resourceLoader.Deinitialize();
         }
 
         protected override void OnRenderFrame(FrameEventArgs args)

@@ -53,5 +53,11 @@ namespace GameEngine.Resources
 
             return id;
         }
+
+        public void Delete()
+        {
+            Unbind();
+            GL.DeleteTexture(GLObject);
+        }
     }
 }

@@ -6,7 +6,6 @@ namespace GameEngine.Resources
     public class Mesh : IResource
     {
         public ResourceType Type => ResourceType.Mesh;
-        public int GLObject => throw new Exception("Mesh hasn't OpenGL object");
 
         public Vector3[] Vertices { get; private set; }
         public Vector2[] UVs { get; private set; }
@@ -78,6 +77,14 @@ namespace GameEngine.Resources
         public void SetNormals(uint[] indecies)
         {
             Indecies = indecies;
+        }
+
+        public void Delete()
+        {
+            Normals = null;
+            Vertices = null;
+            UVs = null;
+            Indecies = null;
         }
     }
 }

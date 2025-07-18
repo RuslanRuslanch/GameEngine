@@ -24,10 +24,10 @@ namespace GameEngine.Components
 
         public override void OnStart()
         {
-            SetInitialized();
+            base.OnStart();
 
-            var shader = GameObject.World.Core.Resource.Get<Shader>("spriteShader");
-            var texture = GameObject.World.Core.Resource.Get<Texture>("characterTexture");
+            var shader = GameObject.World.Core.Resource.Get<Shader>("SpriteShader");
+            var texture = GameObject.World.Core.Resource.Get<Texture>("CharacterTexture");
 
             var material = new Material(texture, shader);
 

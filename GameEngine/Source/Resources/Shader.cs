@@ -10,7 +10,6 @@ namespace GameEngine.Resources
         public string ID { get; private set; }
         public int GLObject { get; private set; }
 
-
         public Shader(string id, string vertexPath, string fragmentPath)
         {
             ID = id;
@@ -89,9 +88,16 @@ namespace GameEngine.Resources
             GL.UseProgram(GLObject);
         }
 
-        public void Disable()
+        public void Unbind()
         {
             GL.UseProgram(0);
         }
+
+        public void Delete()
+        {
+            Unbind();
+            GL.DeleteProgram(GLObject);
+        }
+
     }
 }

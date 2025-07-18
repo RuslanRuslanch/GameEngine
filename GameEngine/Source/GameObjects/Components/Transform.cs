@@ -17,12 +17,14 @@ namespace GameEngine.Components
 
         public Transform(GameObject gameObject) : base(gameObject)
         {
-            UpdateModelMatrix();
+            
         }
 
         public override void OnStart()
         {
-            SetInitialized();
+            base.OnStart();
+
+            UpdateModelMatrix();
         }
 
         public void SetPosition(float x, float y, float z)

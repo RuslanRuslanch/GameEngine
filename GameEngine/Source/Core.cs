@@ -12,8 +12,8 @@ namespace GameEngine
         public readonly Gizmos Gizmos = new Gizmos();
         public readonly Physics Physics = new Physics();
         public readonly Resource Resource = new Resource();
-        public readonly FileSystem FileSystem = new FileSystem();
         public readonly RenderSystem Render = new RenderSystem();
+        public readonly FileSystem FileSystem;
         public readonly RenderWindow Window;
         public readonly Input Input;
 
@@ -21,6 +21,7 @@ namespace GameEngine
         {
             Window = window;
 
+            FileSystem = new FileSystem(Resource);
             Input = new Input(window.KeyboardState, window.MouseState);
         }
     }

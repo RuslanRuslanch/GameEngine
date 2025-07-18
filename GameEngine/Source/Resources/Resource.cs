@@ -1,7 +1,4 @@
-﻿using GameEngine.Resources;
-using OpenTK.Graphics.OpenGL;
-
-namespace GameEngine.Resources
+﻿namespace GameEngine.Resources
 {
     public class Resource
     {
@@ -39,6 +36,10 @@ namespace GameEngine.Resources
             {
                 return new Shader(id, paths[0], paths[1]);
             }
+            else if (type == ResourceType.Sound)
+            {
+                return new Sound(id, paths[0]);
+            }
 
             throw new Exception("This resource type is not supported now");
         }
@@ -54,22 +55,7 @@ namespace GameEngine.Resources
 
         public void Delete(IResource resource)
         {
-            if (resource.Type == ResourceType.Texture)
-            {
-                GL.BindTexture(TextureTarget.Texture2D, 0);
-                GL.DeleteTexture(resource.GLObject);
-            }
-            else if (resource.Type == ResourceType.Shader)
-            {
-                GL.UseProgram(0);
-                GL.DeleteProgram(resource.GLObject);
-            }
-            else
-            {
-                throw new Exception("This resource type is not supported now");
-            }
-
-            resource = null;
+            resource.Delete();
         }
     }
 }
