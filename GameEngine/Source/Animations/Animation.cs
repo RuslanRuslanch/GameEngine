@@ -39,6 +39,12 @@ namespace GameEngine.Animations
             IsPlaying = false;
         }
 
+        public void Restart()
+        {
+            Stop();
+            Play();
+        }
+
         public void Pause()
         {
             IsPaused = true;

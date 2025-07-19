@@ -12,7 +12,7 @@ out vec2 fUV;
 
 void main()
 {
-	fUV = vUV;
-
 	gl_Position = projection * view * model * vec4(vPosition, 1.0);
+
+	fUV = vUV;
 }

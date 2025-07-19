@@ -43,6 +43,11 @@ namespace GameEngine.Physics3D
             return false;
         }
 
+        public Chunk[] GetChunks()
+        {
+            return null;
+        }
+
         public bool Raycast(Ray ray, out RaycastHit hit, float maxDistance)
         {
             var rayOffset = ray.Direction * StepLength;
@@ -61,7 +66,7 @@ namespace GameEngine.Physics3D
 
                 rayPosition += rayOffset;
             }
-            
+
             hit = new RaycastHit();
 
             return false;

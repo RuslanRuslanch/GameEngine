@@ -11,6 +11,9 @@ namespace GameEngine.Resources
         public int GLObject { get; private set; }
         public string ID { get; private set; }
 
+        public int Width { get; private set; }
+        public int Height { get; private set; }
+
         public Texture(string id, string path)
         {
             ID = id;
@@ -50,6 +53,9 @@ namespace GameEngine.Resources
             GL.GenerateMipmap(GenerateMipmapTarget.Texture2D);
 
             GL.BindTexture(TextureTarget.Texture2D, 0);
+
+            Width = image.Width;
+            Height = image.Height;
 
             return id;
         }

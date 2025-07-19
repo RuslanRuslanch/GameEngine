@@ -85,6 +85,7 @@ namespace GameEngine.Resources
             Vertices = null;
             UVs = null;
             Indecies = null;
+            ID = null;
         }
     }
 }

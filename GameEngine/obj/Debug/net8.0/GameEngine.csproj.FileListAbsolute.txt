@@ -93,3 +93,4 @@ D:\GitHubRepositories\GameEngine\GameEngine\obj\Debug\net8.0\GameEngine.genrunti
 D:\GitHubRepositories\GameEngine\GameEngine\obj\Debug\net8.0\ref\GameEngine.dll
 D:\GitHubRepositories\GameEngine\GameEngine\bin\Debug\net8.0\Textures\Character.png
 D:\GitHubRepositories\GameEngine\GameEngine\bin\Debug\net8.0\Textures\Dirt.png
+D:\GitHubRepositories\GameEngine\GameEngine\bin\Debug\net8.0\Textures\Font.png

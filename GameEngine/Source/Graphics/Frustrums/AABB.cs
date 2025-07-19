@@ -12,6 +12,20 @@ namespace GameEngine.Resources
             Min = min;
             Max = max;
         }
+
+        public bool Intersects(Vector3 point)
+        {
+            return (point.X >= Min.X && point.X <= Max.X) &&
+                   (point.Y >= Min.Y && point.Y <= Max.Y) &&
+                   (point.Z >= Min.Z && point.Z <= Max.Z);
+        }
+
+        public bool Intersects(AABB another)
+        {
+            return (Min.X <= another.Max.X && Max.X >= another.Min.X) &&
+                   (Min.Y <= another.Max.Y && Max.Y >= another.Min.Y) &&
+                   (Min.Z <= another.Max.Z && Max.Z >= another.Min.Z);
+        }
     }
 }
 

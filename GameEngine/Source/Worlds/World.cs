@@ -113,15 +113,34 @@ namespace GameEngine.Worlds
                 return;
             }
 
+            var renderTime = 0f;
+            var cullingTime = 0f;
+
+            var stopwatch = Stopwatch.StartNew();
+
             for (int i = 0; i < _gameObjects.Count; i++)
             {
+                stopwatch.Restart();
+
                 if (_gameObjects[i].CanRender(MainCamera.Frustum) == false)
                 {
                     continue;
                 }
 
+                stopwatch.Stop();
+                cullingTime += (float)stopwatch.Elapsed.TotalMilliseconds;
+
+                stopwatch.Restart();
+
                 _gameObjects[i].OnRender();
+
+                stopwatch.Stop();
+                renderTime += (float)stopwatch.Elapsed.TotalMilliseconds;
             }
+
+            //stopwatch.Stop();
+
+            //Console.WriteLine($"Render time: {renderTime} | Culling time: {cullingTime}");
         }
 
         public void OnTick()
@@ -137,25 +156,39 @@ namespace GameEngine.Worlds
             RegisterCameraPrefab();
             RegisterTestPrefab();
 
-            var camera = Core.Resource.Get<Prefab>("cameraPrefab").GameObject;
+            var camera = Core.Resource.Get<Prefab>("CameraPrefab").GameObject;
+            var test = Core.Resource.Get<Prefab>("TestPrefab").GameObject;
 
+            var particle = SpawnParticle();
             var grid = SpawnGrid();
+
             var character = new GameObject(this);
 
             character.Transform.SetScale(new Vector3(1f, 2f, 1f));
+            character.Transform.Move(Vector3.UnitX * 10f);
 
             character.AddComponent<SpriteRenderer>();
-            character.AddComponent<CharacterMovement>();
             character.AddComponent<ObjectSpawner>();
 
-            SendRegisterRequest(grid);
             SendRegisterRequest(character);
+            SendRegisterRequest(grid);
+            SendRegisterRequest(particle);
             SendRegisterRequest(camera);
+            SendRegisterRequest(test);
         }
 
         public void OnFinish()
         {
             UnregisterAll();
+        }
+
+        private GameObject SpawnParticle()
+        {
+            var gameObject = new GameObject(this);
+
+            gameObject.AddComponent<ParticleRenderer>().Play();
+
+            return gameObject;
         }
 
         private GameObject SpawnGrid()
@@ -212,8 +245,9 @@ namespace GameEngine.Worlds
 
             camera.AddTag("Main Camera");
             camera.AddComponent<Camera>();
+            camera.AddComponent<CameraMovement>();
 
-            Core.Resource.Save(new Prefab("cameraPrefab", camera));
+            Core.Resource.Save(new Prefab("CameraPrefab", camera));
         }
 
         private void RegisterTestPrefab()
@@ -221,9 +255,10 @@ namespace GameEngine.Worlds
             var gameObject = new GameObject(this);
 
             //gameObject.AddComponent<LineRenderer>().SetPoints(new Vector3[] {Vector3.Zero, Vector3.UnitX});
-            gameObject.AddComponent<SpriteRenderer>();
+            
+            gameObject.AddComponent<TextRenderer>();
 
-            Core.Resource.Save(new Prefab("testPrefab", gameObject));
+            Core.Resource.Save(new Prefab("TestPrefab", gameObject));
         }
     }
 }

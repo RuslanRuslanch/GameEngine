@@ -1,3 +1,4 @@
+using GameEngine.Graphics;
 using OpenTK.Windowing.GraphicsLibraryFramework;
 
 namespace GameEngine.Inputs
@@ -6,6 +7,12 @@ namespace GameEngine.Inputs
     {
         public readonly KeyboardState Keyboard;
         public readonly MouseState Mouse;
+
+        public Input(RenderWindow window)
+        {
+            Keyboard = window.KeyboardState;
+            Mouse = window.MouseState;
+        }
 
         public Input(KeyboardState keyboard, MouseState mouse)
         {

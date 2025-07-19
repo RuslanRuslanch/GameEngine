@@ -14,6 +14,14 @@ namespace GameEngine.Resources
                 new Vector3(1f, 1f, 0f),
             };
 
+            var uvs = new Vector2[]
+            {
+                Vector2.Zero,
+                Vector2.UnitX,
+                Vector2.UnitY,
+                Vector2.One,
+            };
+
             var indecies = new uint[]
             {
                 0, 1, 3,
@@ -26,7 +34,16 @@ namespace GameEngine.Resources
                 -Vector3.UnitZ,
             };
 
-            resource.Save(new Mesh("spriteMesh", vertices, normals, indecies));
+            var texture = resource.Get<Texture>("RussianFontTexture");
+            var shader = resource.Get<Shader>("UIShader");
+
+            var size = new Vector2(16f / texture.Width, 16f / texture.Height);
+            var font = new Font("RussianFont", "1", texture, shader, size);
+
+            resource.Save(new Mesh("SpriteMesh", vertices, uvs, normals, indecies));
+            resource.Save(font);
+            
+            font.Generate(resource);
         }
 
         public void Deinitialize()

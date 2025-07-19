@@ -10,14 +10,16 @@ namespace GameEngine.Components
 {
     public sealed class ParticleRenderer : Component
     {
-        public bool IsStarted { get; private set; } = false;
+        public bool IsPlaying { get; private set; } = false;
         public int MaxParticleCount { get; private set; } = 0;
         public Material Material { get; private set; }
 
         private readonly List<Particle> _particles = new List<Particle>();
         private readonly UVRegion _uvRegion = new UVRegion();
+        private readonly FastNoiseLite _noise = new FastNoiseLite();
 
         private int _vao;
+        private float _time;
 
         public ParticleRenderer(GameObject gameObject) : base(gameObject)
         {
@@ -48,14 +50,24 @@ namespace GameEngine.Components
                 Console.WriteLine($"Current particle count: {MaxParticleCount}");
             }
 
-            if (IsStarted == false)
+            if (IsPlaying == false)
             {
                 return;
             }
 
+            _time += delta;
+
             for (int i = 0; i < MaxParticleCount; i++)
             {
-                _particles[i].Move(Vector3.UnitY * delta * 0f);
+                var particlePosition = _particles[i].Position;
+
+                var x = (float)Math.Sin(_time * particlePosition.X + i);
+                var y = 1f;
+                var z = (float)Math.Cos(_time * particlePosition.Z + i);
+
+                var direction = new Vector3(x, y, z);
+
+                _particles[i].Move(direction * delta);
             }
 
             Console.WriteLine("Particles updated");
@@ -63,7 +75,7 @@ namespace GameEngine.Components
 
         public override void OnPreRender()
         {
-            if (IsStarted == false)
+            if (IsPlaying == false)
             {
                 return;
             }
@@ -77,7 +89,7 @@ namespace GameEngine.Components
 
         public override void OnRender()
         {
-            if (IsStarted == false)
+            if (IsPlaying == false)
             {
                 return;
             }
@@ -93,10 +105,10 @@ namespace GameEngine.Components
 
         private void RenderParticles()
         {
+            var frustum = GameObject.World.MainCamera.Frustum;
+
             for (int i = 0; i < MaxParticleCount; i++)
             {
-                var frustum = GameObject.World.MainCamera.Frustum;
-
                 if (_particles[i].CanRender(frustum) == false)
                 {
                     continue;
@@ -113,7 +125,7 @@ namespace GameEngine.Components
 
         public void Play()
         {
-            IsStarted = true;
+            IsPlaying = true;
 
             for (int i = 0; i < MaxParticleCount; i++)
             {
@@ -127,7 +139,7 @@ namespace GameEngine.Components
         {
             _particles.Clear();
 
-            IsStarted = false;
+            IsPlaying = false;
         }
 
         public void SetMaxParticleCount(int count)
@@ -137,7 +149,7 @@ namespace GameEngine.Components
 
         private void CreateBuffers()
         {
-            var mesh = GameObject.World.Core.Resource.Get<Mesh>("spriteMesh");
+            var mesh = GameObject.World.Core.Resource.Get<Mesh>("SpriteMesh");
 
             var uvs = new Vector2[]
             {

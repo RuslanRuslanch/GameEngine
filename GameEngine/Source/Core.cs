@@ -22,7 +22,7 @@ namespace GameEngine
             Window = window;
 
             FileSystem = new FileSystem(Resource);
-            Input = new Input(window.KeyboardState, window.MouseState);
+            Input = new Input(window);
         }
     }
 }

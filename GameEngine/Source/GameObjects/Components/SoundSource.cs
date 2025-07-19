@@ -19,17 +19,17 @@ namespace GameEngine.Components
         {
         }
 
-        public override unsafe void OnStart()
+        public override void OnStart()
         {
             base.OnStart();
-            
+
             _sound = GameObject.World.Core.Resource.Get<Sound>("Sound");
 
             _id = AL.GenSource();
 
-            AL.Source(_id, ALSourcef.Pitch, 1.0f);
+            SetLoop(IsLoop);
+            SetPitch(1f);
             AL.Source(_id, ALSourcef.Gain, 1.0f);
-            AL.Source(_id, ALSourceb.Looping, IsLoop);
         }
 
         public override void OnFinish()
@@ -59,6 +59,11 @@ namespace GameEngine.Components
             IsLoop = state;
 
             AL.Source(_id, ALSourceb.Looping, IsLoop);
+        }
+
+        public void SetPitch(float pitch)
+        {
+            AL.Source(_id, ALSourcef.Pitch, pitch);
         }
 
         public void SetDirection(Vector3 direction)

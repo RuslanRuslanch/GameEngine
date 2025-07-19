@@ -1,5 +1,4 @@
 using GameEngine.GameObjects;
-using OpenTK.Graphics.OpenGL;
 
 namespace GameEngine.Animations
 {

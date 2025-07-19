@@ -63,7 +63,7 @@ namespace GameEngine.Components
             GameObject.World.Core.Render.Bind(Material);
 
             GL.BindVertexArray(_vao);
-            GL.DrawElements(PrimitiveType.Triangles, 6, DrawElementsType.UnsignedInt, 0);
+            GL.DrawElements(PrimitiveType.Triangles, 6, DrawElementsType.UnsignedInt, IntPtr.Zero);
             GL.BindVertexArray(0);
         }
 
@@ -82,7 +82,7 @@ namespace GameEngine.Components
 
         private void CreateBuffers()
         {
-            var mesh = GameObject.World.Core.Resource.Get<Mesh>("spriteMesh");
+            var mesh = GameObject.World.Core.Resource.Get<Mesh>("SpriteMesh");
 
             var uvs = new Vector2[]
             {
@@ -102,11 +102,6 @@ namespace GameEngine.Components
 
         private void DeleteBuffers()
         {
-            if (_vao == 0)
-            {
-                return;
-            }
-
             GL.BindBuffer(BufferTarget.ElementArrayBuffer, 0);
             GL.DeleteBuffer(_ebo);
 

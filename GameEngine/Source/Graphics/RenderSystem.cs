@@ -4,8 +4,8 @@ namespace GameEngine.Graphics
 {
     public sealed class RenderSystem
     {
-        private Texture _texture;
-        private Shader _shader;
+        private int _texture;
+        private int _shader;
 
         public void Bind(Material material)
         {
@@ -15,26 +15,26 @@ namespace GameEngine.Graphics
 
         public void Bind(Shader shader)
         {
-            if (_shader == shader)
+            if (_shader == shader.GLObject)
             {
                 return;
             }
 
             shader.Bind();
 
-            _shader = shader;
+            _shader = shader.GLObject;
         }
 
         public void Bind(Texture texture)
         {
-            if (_texture == texture)
+            if (_texture == texture.GLObject)
             {
                 return;
             }
 
             texture.Bind();
 
-            _texture = texture;
+            _texture = texture.GLObject;
         }
     }
 }
