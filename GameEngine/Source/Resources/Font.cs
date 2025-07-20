@@ -51,6 +51,8 @@ namespace GameEngine.Resources
             var normalObject = new VBO(mesh.Normals, BufferUsageHint.StaticDraw).ID;
             var vao = new DefaultVAO(ebo, vertexObject, uvObject, normalObject, shader).ID;
 
+            Console.WriteLine(vao);
+
             _vaos.Add(letter, vao);
         }
 

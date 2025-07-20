@@ -14,8 +14,6 @@ namespace GameEngine.Graphics
         private readonly ResourceLoader _resourceLoader;
         private readonly World _world;
 
-        private float _timer;
-
         public RenderWindow(GameWindowSettings gameSettings, NativeWindowSettings nativeSettings) : base(gameSettings, nativeSettings)
         {
             _core = new Core(this);
@@ -73,15 +71,6 @@ namespace GameEngine.Graphics
             
             _world.OnUpdate(delta);
             _tickSystem.OnTick(delta);
-
-            _timer += delta;
-
-            if (_timer >= 1f)
-            {
-                Title = $"FPS: {(int)(1d / delta)}";
-
-                _timer -= 1f;
-            }
         }
 
         protected override void OnResize(ResizeEventArgs e)

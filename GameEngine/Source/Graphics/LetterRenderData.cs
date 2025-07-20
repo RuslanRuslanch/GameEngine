@@ -2,7 +2,7 @@ using OpenTK.Mathematics;
 
 namespace GameEngine.Graphics
 {
-    public struct LetterRenderData
+    public class LetterRenderData
     {
         public readonly int VAO;
         public readonly Vector3 Position;

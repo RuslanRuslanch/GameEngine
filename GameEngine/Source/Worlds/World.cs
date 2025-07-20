@@ -140,7 +140,7 @@ namespace GameEngine.Worlds
 
             stopwatch.Stop();
 
-            Console.WriteLine($"Render time: {renderTime} | Culling time: {cullingTime}");
+            //Console.WriteLine($"Render time: {renderTime} | Culling time: {cullingTime}");
         }
 
         public void OnTick()
@@ -263,6 +263,7 @@ namespace GameEngine.Worlds
             //gameObject.AddComponent<LineRenderer>().SetPoints(new Vector3[] {Vector3.Zero, Vector3.UnitX});
             
             gameObject.AddComponent<TextRenderer>();
+            gameObject.AddComponent<FPSShower>();
 
             Core.Resource.Save(new Prefab("TestPrefab", gameObject));
         }
