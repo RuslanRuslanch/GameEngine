@@ -19,7 +19,7 @@ namespace GameEngine.Components
 
             if (keyboard.IsKeyReleased(Keys.E))
             {
-                var stopwatch = Stopwatch.StartNew();
+                var stopwatch = Stopwatch.StartNew();   
 
                 for (int x = 0; x < 100; x++)
                 {
@@ -38,7 +38,7 @@ namespace GameEngine.Components
 
                 stopwatch.Stop();
 
-                Console.WriteLine($"Generate time: {stopwatch.ElapsedMilliseconds} | {_count} units");
+                Console.WriteLine($"Spawn time: {stopwatch.ElapsedMilliseconds} | {_count} units");
             }
         }
     }

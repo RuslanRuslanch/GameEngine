@@ -46,14 +46,6 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
-            "NAudio": {
-              "target": "Package",
-              "version": "[2.2.1, )"
-            },
-            "NAudio.Vorbis": {
-              "target": "Package",
-              "version": "[1.5.0, )"
-            },
             "OpenTK": {
               "target": "Package",
               "version": "[4.9.4, )"

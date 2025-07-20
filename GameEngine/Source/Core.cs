@@ -4,6 +4,7 @@ using GameEngine.Inputs;
 using GameEngine.Physics3D;
 using GameEngine.FileSystems;
 using GameEngine.Graphics;
+using GameEngine.Sounds;
 
 namespace GameEngine
 {
@@ -13,6 +14,7 @@ namespace GameEngine
         public readonly Physics Physics = new Physics();
         public readonly Resource Resource = new Resource();
         public readonly RenderSystem Render = new RenderSystem();
+        public readonly SoundSystem SoundSystem = new SoundSystem();
         public readonly FileSystem FileSystem;
         public readonly RenderWindow Window;
         public readonly Input Input;

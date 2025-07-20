@@ -6,10 +6,8 @@ using OpenTK.Mathematics;
 
 namespace GameEngine.Components
 {
-    public sealed class SpriteRenderer : Component
+    public sealed class SpriteRenderer : AbstractRenderer
     {
-        public Material Material { get; private set; }
-
         private int _vao;
         private int _vertexObject;
         private int _uvObject;
@@ -26,10 +24,7 @@ namespace GameEngine.Components
         {
             base.OnStart();
 
-            var shader = GameObject.World.Core.Resource.Get<Shader>("SpriteShader");
-            var texture = GameObject.World.Core.Resource.Get<Texture>("CharacterTexture");
-
-            var material = new Material(texture, shader);
+            var material = GameObject.World.Core.Resource.Get<Material>("SpriteMaterial");
 
             SetMaterial(material);
             CreateBuffers();
@@ -73,11 +68,6 @@ namespace GameEngine.Components
 
             DeleteBuffers();
             CreateBuffers();
-        }
-
-        public void SetMaterial(Material material)
-        {
-            Material = material;
         }
 
         private void CreateBuffers()

@@ -9,33 +9,28 @@ namespace GameEngine.Resources
         private readonly Dictionary<char, int> _vaos = new Dictionary<char, int>();
 
         private readonly string _alphabet;
-
-        public readonly Texture Texture;
-        public readonly Shader Shader;
         public readonly Vector2 LetterSize;
 
         public ResourceType Type => ResourceType.Font;
         public string ID { get; private set; }
 
-        public Font(string id, string alphabet, Texture texture, Shader shader, Vector2 letterSize)
+        public Font(string id, string alphabet, Vector2 letterSize)
         {
             ID = id;
             LetterSize = letterSize;
-            Shader = shader;
-            Texture = texture;
 
             _alphabet = alphabet;
         }
 
-        public void Generate(Resource resource)
+        public void Generate(Resource resource, Shader shader)
         {
             for (int i = 0; i < _alphabet.Length; i++)
             {
-                GenerateLetter(i, _alphabet[i], resource);
+                GenerateLetter(i, _alphabet[i], resource, shader);
             }
         }
 
-        private void GenerateLetter(int index, char letter, Resource resource)
+        private void GenerateLetter(int index, char letter, Resource resource, Shader shader)
         {
             var mesh = resource.Get<Mesh>("SpriteMesh");
 
@@ -54,19 +49,19 @@ namespace GameEngine.Resources
             var vertexObject = new VBO(mesh.Vertices, BufferUsageHint.StaticDraw).ID;
             var uvObject = new VBO(uvs, BufferUsageHint.StaticDraw).ID;
             var normalObject = new VBO(mesh.Normals, BufferUsageHint.StaticDraw).ID;
-            var vao = new DefaultVAO(ebo, vertexObject, uvObject, normalObject, Shader).ID;
+            var vao = new DefaultVAO(ebo, vertexObject, uvObject, normalObject, shader).ID;
 
             _vaos.Add(letter, vao);
-        }
-
-        public void Delete()
-        {
-            Texture.Delete();
         }
 
         public int Get(char letter)
         {
             return _vaos[letter];
+        }
+
+        public void Delete()
+        {
+            return;
         }
     }
 }

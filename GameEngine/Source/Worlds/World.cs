@@ -8,7 +8,7 @@ namespace GameEngine.Worlds
 {
     public sealed class World
     {
-        private readonly List<GameObject> _gameObjects = new List<GameObject>();
+        private readonly HashSet<GameObject> _gameObjects = new HashSet<GameObject>();
         private readonly List<GameObject> _registerTargets = new List<GameObject>();
 
         public readonly Core Core;
@@ -56,17 +56,17 @@ namespace GameEngine.Worlds
 
         public void UnregisterAll()
         {
-            for (int i = 0; i < _gameObjects.Count; i++)
+            foreach (var gameObject in _gameObjects)
             {
-                Unregister(_gameObjects[i]);
+                Unregister(gameObject);
             }
         }
 
         public T FindByType<T>() where T : Component
         {
-            for (int i = 0; i < _gameObjects.Count; i++)
+            foreach (var gameObject in _gameObjects)
             {
-                if (_gameObjects[i].TryGetComponent(out T result))
+                if (gameObject.TryGetComponent(out T result))
                 {
                     return result;
                 }
@@ -77,11 +77,11 @@ namespace GameEngine.Worlds
 
         public GameObject FindByTag(string tag)
         {
-            for (int i = 0; i < _gameObjects.Count; i++)
+            foreach (var gameObject in _gameObjects)
             {
-                if (_gameObjects[i].HasTag(tag))
+                if (gameObject.HasTag(tag))
                 {
-                    return _gameObjects[i];
+                    return gameObject;
                 }
             }
 
@@ -93,16 +93,16 @@ namespace GameEngine.Worlds
             for (int i = 0; i < _registerTargets.Count; i++)
             {
                 Register(_registerTargets[i]);
-
-                _registerTargets.RemoveAt(i);
             }
+
+            _registerTargets.Clear();
         }
 
         public void OnUpdate(float delta)
         {
-            for (int i = 0; i < _gameObjects.Count; i++)
+            foreach (var gameObject in _gameObjects)
             {
-                _gameObjects[i].OnUpdate(delta);
+                gameObject.OnUpdate(delta);
             }
         }
 
@@ -118,11 +118,11 @@ namespace GameEngine.Worlds
 
             var stopwatch = Stopwatch.StartNew();
 
-            for (int i = 0; i < _gameObjects.Count; i++)
+            foreach (var gameObject in _gameObjects)
             {
                 stopwatch.Restart();
 
-                if (_gameObjects[i].CanRender(MainCamera.Frustum) == false)
+                if (gameObject.CanRender(MainCamera.Frustum) == false)
                 {
                     continue;
                 }
@@ -132,22 +132,22 @@ namespace GameEngine.Worlds
 
                 stopwatch.Restart();
 
-                _gameObjects[i].OnRender();
+                gameObject.OnRender();
 
                 stopwatch.Stop();
                 renderTime += (float)stopwatch.Elapsed.TotalMilliseconds;
             }
 
-            //stopwatch.Stop();
+            stopwatch.Stop();
 
-            //Console.WriteLine($"Render time: {renderTime} | Culling time: {cullingTime}");
+            Console.WriteLine($"Render time: {renderTime} | Culling time: {cullingTime}");
         }
 
         public void OnTick()
         {
-            for (int i = 0; i < _gameObjects.Count; i++)
+            foreach (var gameObject in _gameObjects)
             {
-                _gameObjects[i].OnTick();
+                gameObject.OnTick();
             }
         }
 
@@ -164,10 +164,10 @@ namespace GameEngine.Worlds
 
             var character = new GameObject(this);
 
-            character.Transform.SetScale(new Vector3(1f, 2f, 1f));
-            character.Transform.Move(Vector3.UnitX * 10f);
+            character.Transform.SetScale(new Vector3(1f, 2f, 0f));;
 
             character.AddComponent<SpriteRenderer>();
+            character.AddComponent<CharacterMovement>();
             character.AddComponent<ObjectSpawner>();
 
             SendRegisterRequest(character);
@@ -186,7 +186,9 @@ namespace GameEngine.Worlds
         {
             var gameObject = new GameObject(this);
 
-            gameObject.AddComponent<ParticleRenderer>().Play();
+            var renderer =  gameObject.AddComponent<ParticleRenderer>();
+
+            renderer.Play();
 
             return gameObject;
         }
@@ -201,6 +203,8 @@ namespace GameEngine.Worlds
             renderer.SetColor(Color4.GhostWhite);
 
             var stopwatch = Stopwatch.StartNew();
+
+            var allPoints = new List<Vector3>(); 
 
             for (int x = -32; x < 32; x++)
             {
@@ -224,9 +228,11 @@ namespace GameEngine.Worlds
                         new Vector3(x + 1f, 0f, z + 1f),
                     };
 
-                    renderer.AddPoints(points);
+                    allPoints.AddRange(points);
                 }
             }
+
+            renderer.SetPoints(allPoints.ToArray());
 
             stopwatch.Stop();
 
@@ -240,12 +246,12 @@ namespace GameEngine.Worlds
         {
             var camera = new GameObject(this);
 
-            camera.Transform.Move(Vector3.UnitY * 3f);
-            camera.Transform.Move(Vector3.UnitZ * 5f);
+            camera.Transform.Move(Vector3.UnitY * 5f);
+            camera.Transform.Move(Vector3.UnitZ * 15f);
 
             camera.AddTag("Main Camera");
             camera.AddComponent<Camera>();
-            camera.AddComponent<CameraMovement>();
+            //camera.AddComponent<CameraMovement>();
 
             Core.Resource.Save(new Prefab("CameraPrefab", camera));
         }

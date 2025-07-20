@@ -9,5 +9,7 @@
         Font,
         Sound,
         Prefab,
+        Material,
+
     }
 }

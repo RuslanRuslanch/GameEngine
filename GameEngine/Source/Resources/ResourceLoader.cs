@@ -38,12 +38,12 @@ namespace GameEngine.Resources
             var shader = resource.Get<Shader>("UIShader");
 
             var size = new Vector2(16f / texture.Width, 16f / texture.Height);
-            var font = new Font("RussianFont", "1", texture, shader, size);
+            var font = new Font("RussianFont", "1", size);
 
             resource.Save(new Mesh("SpriteMesh", vertices, uvs, normals, indecies));
             resource.Save(font);
             
-            font.Generate(resource);
+            font.Generate(resource, shader);
         }
 
         public void Deinitialize()

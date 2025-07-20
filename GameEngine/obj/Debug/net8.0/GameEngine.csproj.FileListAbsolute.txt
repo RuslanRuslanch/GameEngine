@@ -56,14 +56,6 @@ D:\GitHubRepositories\GameEngine\GameEngine\bin\Debug\net8.0\GameEngine.deps.jso
 D:\GitHubRepositories\GameEngine\GameEngine\bin\Debug\net8.0\GameEngine.runtimeconfig.json
 D:\GitHubRepositories\GameEngine\GameEngine\bin\Debug\net8.0\GameEngine.dll
 D:\GitHubRepositories\GameEngine\GameEngine\bin\Debug\net8.0\GameEngine.pdb
-D:\GitHubRepositories\GameEngine\GameEngine\bin\Debug\net8.0\NAudio.dll
-D:\GitHubRepositories\GameEngine\GameEngine\bin\Debug\net8.0\NAudio.Asio.dll
-D:\GitHubRepositories\GameEngine\GameEngine\bin\Debug\net8.0\NAudio.Core.dll
-D:\GitHubRepositories\GameEngine\GameEngine\bin\Debug\net8.0\NAudio.Midi.dll
-D:\GitHubRepositories\GameEngine\GameEngine\bin\Debug\net8.0\NAudio.Vorbis.dll
-D:\GitHubRepositories\GameEngine\GameEngine\bin\Debug\net8.0\NAudio.Wasapi.dll
-D:\GitHubRepositories\GameEngine\GameEngine\bin\Debug\net8.0\NAudio.WinMM.dll
-D:\GitHubRepositories\GameEngine\GameEngine\bin\Debug\net8.0\NVorbis.dll
 D:\GitHubRepositories\GameEngine\GameEngine\bin\Debug\net8.0\OpenTK.Audio.OpenAL.dll
 D:\GitHubRepositories\GameEngine\GameEngine\bin\Debug\net8.0\OpenTK.Compute.dll
 D:\GitHubRepositories\GameEngine\GameEngine\bin\Debug\net8.0\OpenTK.Core.dll
@@ -94,3 +86,12 @@ D:\GitHubRepositories\GameEngine\GameEngine\obj\Debug\net8.0\ref\GameEngine.dll
 D:\GitHubRepositories\GameEngine\GameEngine\bin\Debug\net8.0\Textures\Character.png
 D:\GitHubRepositories\GameEngine\GameEngine\bin\Debug\net8.0\Textures\Dirt.png
 D:\GitHubRepositories\GameEngine\GameEngine\bin\Debug\net8.0\Textures\Font.png
+D:\GitHubRepositories\GameEngine\GameEngine\bin\Debug\net8.0\Resources\CharacterTexture.yml
+D:\GitHubRepositories\GameEngine\GameEngine\bin\Debug\net8.0\Resources\DirtTexture.yml
+D:\GitHubRepositories\GameEngine\GameEngine\bin\Debug\net8.0\Resources\LineShader.yml
+D:\GitHubRepositories\GameEngine\GameEngine\bin\Debug\net8.0\Resources\ParticleMaterial.yml
+D:\GitHubRepositories\GameEngine\GameEngine\bin\Debug\net8.0\Resources\RussianFontTexture.yml
+D:\GitHubRepositories\GameEngine\GameEngine\bin\Debug\net8.0\Resources\SpriteShader.yml
+D:\GitHubRepositories\GameEngine\GameEngine\bin\Debug\net8.0\Resources\TextMaterial.yml
+D:\GitHubRepositories\GameEngine\GameEngine\bin\Debug\net8.0\Resources\UIShader.yml
+D:\GitHubRepositories\GameEngine\GameEngine\bin\Debug\net8.0\Resources\SpriteMaterial.yml

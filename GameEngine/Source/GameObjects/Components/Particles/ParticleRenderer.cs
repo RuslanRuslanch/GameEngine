@@ -8,17 +8,21 @@ using OpenTK.Windowing.GraphicsLibraryFramework;
 
 namespace GameEngine.Components
 {
-    public sealed class ParticleRenderer : Component
+    public sealed class ParticleRenderer : AbstractRenderer
     {
         public bool IsPlaying { get; private set; } = false;
         public int MaxParticleCount { get; private set; } = 0;
-        public Material Material { get; private set; }
 
         private readonly List<Particle> _particles = new List<Particle>();
         private readonly UVRegion _uvRegion = new UVRegion();
         private readonly FastNoiseLite _noise = new FastNoiseLite();
 
         private int _vao;
+        private int _vertexObject;
+        private int _uvObject;
+        private int _normalObject;
+        private int _ebo;
+
         private float _time;
 
         public ParticleRenderer(GameObject gameObject) : base(gameObject)
@@ -29,13 +33,9 @@ namespace GameEngine.Components
         {
             base.OnStart();
 
-            var shader = GameObject.World.Core.Resource.Get<Shader>("SpriteShader");
-            var texture = GameObject.World.Core.Resource.Get<Texture>("DirtTexture");
+            var material = GameObject.World.Core.Resource.Get<Material>("ParticleMaterial");
 
-            var material = new Material(texture, shader);
-
-            Material = material;
-
+            SetMaterial(material);
             CreateBuffers();
         }
 
@@ -69,8 +69,6 @@ namespace GameEngine.Components
 
                 _particles[i].Move(direction * delta);
             }
-
-            Console.WriteLine("Particles updated");
         }
 
         public override void OnPreRender()
@@ -109,7 +107,7 @@ namespace GameEngine.Components
 
             for (int i = 0; i < MaxParticleCount; i++)
             {
-                if (_particles[i].CanRender(frustum) == false)
+                if (frustum.InFrustum(_particles[i].AABB) == false)
                 {
                     continue;
                 }
@@ -125,8 +123,20 @@ namespace GameEngine.Components
 
         public void Play()
         {
+            if (IsPlaying)
+            {
+                return;
+            }
+
             IsPlaying = true;
 
+            if (_particles.Count == MaxParticleCount)
+            {
+                return;
+            }
+
+            _particles.Clear();
+            
             for (int i = 0; i < MaxParticleCount; i++)
             {
                 var particle = new Particle(GameObject.Transform.Position, GameObject.Transform.Scale.X);
@@ -142,9 +152,29 @@ namespace GameEngine.Components
             IsPlaying = false;
         }
 
+        public void Restart()
+        {
+            Stop();
+            Play();
+        }
+
         public void SetMaxParticleCount(int count)
         {
             MaxParticleCount = count;
+        }
+
+        private void DeleteBuffers()
+        {
+            GL.BindVertexArray(0);
+            GL.DeleteVertexArray(_vao);
+            
+            GL.BindBuffer(BufferTarget.ElementArrayBuffer, 0);
+            GL.DeleteBuffer(_ebo);
+
+            GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
+            GL.DeleteBuffer(_vertexObject);
+            GL.DeleteBuffer(_uvObject);
+            GL.DeleteBuffer(_normalObject);
         }
 
         private void CreateBuffers()
@@ -159,12 +189,12 @@ namespace GameEngine.Components
                 _uvRegion.Max,
             };
 
-            var vertexObject = new VBO(mesh.Vertices, BufferUsageHint.StaticDraw).ID;
-            var uvObject = new VBO(uvs, BufferUsageHint.StaticDraw).ID;
-            var normalObject = new VBO(mesh.Normals, BufferUsageHint.StaticDraw).ID;
-            var ebo = new EBO(mesh.Indecies, BufferUsageHint.StaticDraw).ID;
+            _vertexObject = new VBO(mesh.Vertices, BufferUsageHint.StaticDraw).ID;
+            _uvObject = new VBO(uvs, BufferUsageHint.StaticDraw).ID;
+            _normalObject = new VBO(mesh.Normals, BufferUsageHint.StaticDraw).ID;
+            _ebo = new EBO(mesh.Indecies, BufferUsageHint.StaticDraw).ID;
 
-            _vao = new DefaultVAO(ebo, vertexObject, uvObject, normalObject, Material.Shader).ID;
+            _vao = new DefaultVAO(_ebo, _vertexObject, _uvObject, _normalObject, Material.Shader).ID;
         }
     }
 }

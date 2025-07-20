@@ -33,8 +33,6 @@ namespace GameEngine.FileSystems
                 }
 
                 resources.Add(resource);
-
-                Console.WriteLine(resource.ID);
             }
 
             return resources.ToArray();
@@ -49,12 +47,12 @@ namespace GameEngine.FileSystems
                 throw new KeyNotFoundException("'type:' not found");
             }
 
+            Console.WriteLine(filePath);
+
             if (type == "texture")
             {
                 if (FindParameter("path:", lines, out var path))
                 {
-                    Console.WriteLine(path);
-
                     path = path.Replace('"', ' ').Trim();
 
                     return _resource.SaveAndLoad(Path.GetFileNameWithoutExtension(filePath), ResourceType.Texture, $@"{path}");
@@ -66,9 +64,34 @@ namespace GameEngine.FileSystems
                 {
                     path = path.Replace('"', ' ').Trim();
 
-                    Console.WriteLine(path);
-
                     return _resource.SaveAndLoad(Path.GetFileNameWithoutExtension(filePath), ResourceType.Sound, $@"{path}");
+                }
+            }
+            else if (type == "material")
+            {
+                if (FindParameter("shader", lines, out var shaderPath) && 
+                    FindParameter("texture", lines, out var texturePath))
+                {
+                    shaderPath = shaderPath.Replace('"', ' ').Trim();
+                    texturePath = texturePath.Replace('"', ' ').Trim();
+                    
+                    if (_resource.Has(Path.GetFileNameWithoutExtension(shaderPath)) == false)
+                    {
+                        LoadResource($@"{shaderPath}");
+                    }
+                    if (_resource.Has(Path.GetFileNameWithoutExtension(texturePath)) == false)
+                    {
+                        LoadResource($@"{texturePath}");
+                    }
+
+                    var shader = _resource.Get<Shader>(Path.GetFileNameWithoutExtension(shaderPath));
+                    var texture = _resource.Get<Texture>(Path.GetFileNameWithoutExtension(texturePath));
+
+                    var material = new Material(Path.GetFileNameWithoutExtension(filePath), texture, shader);
+
+                    _resource.Save(material);
+                    
+                    return material;
                 }
             }
             else if (type == "shader")

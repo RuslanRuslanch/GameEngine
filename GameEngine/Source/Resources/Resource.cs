@@ -16,6 +16,11 @@
             return (T)resource;
         }
 
+        public bool Has(string id)
+        {
+            return _resources.FirstOrDefault(r => r.ID == id) != null;
+        }
+
         public void Save(IResource resource)
         {
             if (_resources.Contains(resource))

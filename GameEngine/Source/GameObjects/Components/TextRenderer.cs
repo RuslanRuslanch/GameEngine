@@ -6,7 +6,7 @@ using OpenTK.Mathematics;
 
 namespace GameEngine.Components
 {
-    public sealed class TextRenderer : Component
+    public sealed class TextRenderer : AbstractRenderer
     {
         private readonly HashSet<LetterRenderData> _renders = new HashSet<LetterRenderData>();
 
@@ -19,6 +19,7 @@ namespace GameEngine.Components
 
         public override void OnStart()
         {
+            var material = GameObject.World.Core.Resource.Get<Material>("TextMaterial");
             _font = GameObject.World.Core.Resource.Get<Font>("RussianFont");
 
             var text = "11111";
@@ -33,27 +34,19 @@ namespace GameEngine.Components
 
                 _renders.Add(renderData);
             }
-        }
 
-        public override void OnPreRender()
-        {
-            var projection = GameObject.World.MainCamera.ProjectionMatrix;
-            var view = GameObject.World.MainCamera.ViewMatrix;
-
-            _font.Shader.Load("projection", ref projection);
-            _font.Shader.Load("view", ref view);
+            SetMaterial(material);
         }
 
         public override void OnRender()
         {
-            GameObject.World.Core.Render.Bind(_font.Texture);
-            GameObject.World.Core.Render.Bind(_font.Shader);
+            GameObject.World.Core.Render.Bind(Material);
 
             foreach (var data in _renders)
             {
                 var model = data.ModelMatrix;
 
-                _font.Shader.Load("model", ref model);
+                Material.Shader.Load("model", ref model);
 
                 GL.BindVertexArray(data.VAO);
                 GL.DrawElements(PrimitiveType.Triangles, 6, DrawElementsType.UnsignedInt, IntPtr.Zero);

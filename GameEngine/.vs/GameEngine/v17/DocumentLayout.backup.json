@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "D:\\GitHubRepositories\\GameEngine\\GameEngine\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4850EAC1-D8AF-48B5-9A54-EBCD1EEE31BC}|GameEngine.csproj|d:\\githubrepositories\\gameengine\\gameengine\\source\\gameobjects\\components\\spriterenderer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4850EAC1-D8AF-48B5-9A54-EBCD1EEE31BC}|GameEngine.csproj|solutionrelative:source\\gameobjects\\components\\spriterenderer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4850EAC1-D8AF-48B5-9A54-EBCD1EEE31BC}|GameEngine.csproj|d:\\githubrepositories\\gameengine\\gameengine\\source\\filesystems\\filesystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4850EAC1-D8AF-48B5-9A54-EBCD1EEE31BC}|GameEngine.csproj|solutionrelative:source\\filesystems\\filesystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4850EAC1-D8AF-48B5-9A54-EBCD1EEE31BC}|GameEngine.csproj|d:\\githubrepositories\\gameengine\\gameengine\\source\\core.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -51,14 +51,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "SpriteRenderer.cs",
-              "DocumentMoniker": "D:\\GitHubRepositories\\GameEngine\\GameEngine\\Source\\GameObjects\\Components\\SpriteRenderer.cs",
-              "RelativeDocumentMoniker": "Source\\GameObjects\\Components\\SpriteRenderer.cs",
-              "ToolTip": "D:\\GitHubRepositories\\GameEngine\\GameEngine\\Source\\GameObjects\\Components\\SpriteRenderer.cs",
-              "RelativeToolTip": "Source\\GameObjects\\Components\\SpriteRenderer.cs",
-              "ViewState": "AgIAADIAAAAAAAAAAAAewEAAAAAlAAAAAAAAAA==",
+              "Title": "FileSystem.cs",
+              "DocumentMoniker": "D:\\GitHubRepositories\\GameEngine\\GameEngine\\Source\\FileSystems\\FileSystem.cs",
+              "RelativeDocumentMoniker": "Source\\FileSystems\\FileSystem.cs",
+              "ToolTip": "D:\\GitHubRepositories\\GameEngine\\GameEngine\\Source\\FileSystems\\FileSystem.cs",
+              "RelativeToolTip": "Source\\FileSystems\\FileSystem.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAowCIAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-14T06:57:17.133Z",
+              "WhenOpened": "2025-07-20T17:52:29.59Z",
               "EditorCaption": ""
             },
             {

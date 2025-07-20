@@ -10,7 +10,7 @@ namespace GameEngine.Components
         public Vector3 Position { get; private set; }
         public float Scale { get; private set; } = 1f;
 
-        private AABB _aabb = new AABB();
+        public AABB AABB { get; private set; } = new AABB();
 
         public Particle(Vector3 position, float scale)
         {
@@ -32,7 +32,8 @@ namespace GameEngine.Components
             Position += velocity;
 
             var scale = new Vector3(Scale, Scale, 1f);
-            _aabb = new AABB(Position, Position + scale);
+
+            AABB = new AABB(Position, Position + scale);
 
             ReloadModelMatrix();
         }
@@ -45,11 +46,6 @@ namespace GameEngine.Components
             ModelMatrix =
                 scale *
                 translation;
-        }
-
-        public bool CanRender(Frustum frustum)
-        {
-            return frustum.InFrustum(_aabb);
         }
     }
 }
