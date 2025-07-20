@@ -31,27 +31,34 @@
             _resources.Add(resource);
         }
 
-        public IResource Load(string id, ResourceType type, params string[] paths)
+        public IResource Load(string id, ResourceType type, params string[] args)
         {
             if (type == ResourceType.Texture)
             {
-                return new Texture(id, paths[0]);
+                return new Texture(id, args[0]);
             }
             else if (type == ResourceType.Shader)
             {
-                return new Shader(id, paths[0], paths[1]);
+                return new Shader(id, args[0], args[1]);
             }
             else if (type == ResourceType.Sound)
             {
-                return new Sound(id, paths[0]);
+                return new Sound(id, args[0]);
+            }
+            else if (type == ResourceType.Material)
+            {
+                var shader = Get<Shader>(Path.GetFileNameWithoutExtension(args[0]));
+                var texture = Get<Texture>(Path.GetFileNameWithoutExtension(args[1]));
+
+                return new Material(id, texture, shader);
             }
 
             throw new Exception("This resource type is not supported now");
         }
 
-        public IResource SaveAndLoad(string id, ResourceType type, params string[] paths)
+        public IResource SaveAndLoad(string id, ResourceType type, params string[] args)
         {
-            var resource = Load(id, type, paths);
+            var resource = Load(id, type, args);
 
             Save(resource);
 

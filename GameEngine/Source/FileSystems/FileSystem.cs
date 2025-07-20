@@ -74,24 +74,20 @@ namespace GameEngine.FileSystems
                 {
                     shaderPath = shaderPath.Replace('"', ' ').Trim();
                     texturePath = texturePath.Replace('"', ' ').Trim();
+
+                    var shaderID = Path.GetFileNameWithoutExtension(shaderPath);
+                    var textureID = Path.GetFileNameWithoutExtension(texturePath);
                     
-                    if (_resource.Has(Path.GetFileNameWithoutExtension(shaderPath)) == false)
+                    if (_resource.Has(shaderID) == false)
                     {
                         LoadResource($@"{shaderPath}");
                     }
-                    if (_resource.Has(Path.GetFileNameWithoutExtension(texturePath)) == false)
+                    if (_resource.Has(textureID) == false)
                     {
                         LoadResource($@"{texturePath}");
                     }
-
-                    var shader = _resource.Get<Shader>(Path.GetFileNameWithoutExtension(shaderPath));
-                    var texture = _resource.Get<Texture>(Path.GetFileNameWithoutExtension(texturePath));
-
-                    var material = new Material(Path.GetFileNameWithoutExtension(filePath), texture, shader);
-
-                    _resource.Save(material);
                     
-                    return material;
+                    return _resource.SaveAndLoad(Path.GetFileNameWithoutExtension(filePath), ResourceType.Material, shaderID, textureID);
                 }
             }
             else if (type == "shader")
