@@ -9,7 +9,7 @@ namespace GameEngine.Worlds
     public sealed class World
     {
         private readonly HashSet<GameObject> _gameObjects = new HashSet<GameObject>();
-        private readonly List<GameObject> _registerTargets = new List<GameObject>();
+        private readonly HashSet<GameObject> _registerTargets = new HashSet<GameObject>();
 
         public readonly Core Core;
 
@@ -90,9 +90,9 @@ namespace GameEngine.Worlds
 
         public void HandleRegisterRequests()
         {
-            for (int i = 0; i < _registerTargets.Count; i++)
+            foreach (var target in _registerTargets)
             {
-                Register(_registerTargets[i]);
+                Register(target);
             }
 
             _registerTargets.Clear();
