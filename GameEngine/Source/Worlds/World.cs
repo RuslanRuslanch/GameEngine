@@ -3,6 +3,7 @@ using GameEngine.Components;
 using GameEngine.GameObjects;
 using GameEngine.Resources;
 using OpenTK.Mathematics;
+using Timer = GameEngine.Components.Timer;
 
 namespace GameEngine.Worlds
 {
@@ -47,7 +48,7 @@ namespace GameEngine.Worlds
             _gameObjects.Add(gameObject);
         }
 
-        private void Unregister(GameObject gameObject)
+        public void Unregister(GameObject gameObject)
         {
             gameObject.OnFinish();
 
@@ -75,7 +76,7 @@ namespace GameEngine.Worlds
             return null;
         }
 
-        public GameObject FindByTag(string tag)
+        public GameObject FindObjectByTag(string tag)
         {
             foreach (var gameObject in _gameObjects)
             {
@@ -86,6 +87,21 @@ namespace GameEngine.Worlds
             }
 
             return null;
+        }
+
+        public GameObject[] FindObjectsByTag(string tag)
+        {
+            var result = new List<GameObject>();
+
+            foreach (var gameObject in _gameObjects)
+            {
+                if (gameObject.HasTag(tag))
+                {
+                    result.Add(gameObject);
+                }
+            }
+
+            return result.ToArray();
         }
 
         public void HandleRegisterRequests()
@@ -154,27 +170,42 @@ namespace GameEngine.Worlds
         public void OnStart()
         {
             RegisterCameraPrefab();
-            RegisterTestPrefab();
+            RegisterTextPrefab();
 
             var camera = Core.Resource.Get<Prefab>("CameraPrefab").GameObject;
-            var test = Core.Resource.Get<Prefab>("TestPrefab").GameObject;
+            var test = Core.Resource.Get<Prefab>("TextPrefab").GameObject;
 
             var particle = SpawnParticle();
             var grid = SpawnGrid();
 
+            var random = new Random();  
             var character = new GameObject(this);
 
-            character.Transform.SetScale(new Vector3(1f, 2f, 0f));;
+            character.Transform.SetScale(new Vector3(1f, 2f, 1f));;
 
             character.AddComponent<SpriteRenderer>();
             character.AddComponent<CharacterMovement>();
-            character.AddComponent<ObjectSpawner>();
+            character.AddComponent<ItemPicker>();
 
-            SendRegisterRequest(character);
+            for (int i = 0; i < 100; i++)
+            {
+                var x = random.Next(-32, 32);
+                var z = random.Next(-32, 32);
+
+                var gameObject = new GameObject(this);
+
+                gameObject.AddTag("Pickable");
+                gameObject.AddComponent<SpriteRenderer>();
+                gameObject.Transform.SetPosition(new Vector3(x, 0f, z));
+
+                SendRegisterRequest(gameObject);
+            }
+            
             SendRegisterRequest(grid);
             SendRegisterRequest(particle);
             SendRegisterRequest(camera);
             SendRegisterRequest(test);
+            SendRegisterRequest(character);
         }
 
         public void OnFinish()
@@ -251,21 +282,21 @@ namespace GameEngine.Worlds
 
             camera.AddTag("Main Camera");
             camera.AddComponent<Camera>();
-            //camera.AddComponent<CameraMovement>();
 
             Core.Resource.Save(new Prefab("CameraPrefab", camera));
         }
 
-        private void RegisterTestPrefab()
+        private void RegisterTextPrefab()
         {
             var gameObject = new GameObject(this);
 
-            //gameObject.AddComponent<LineRenderer>().SetPoints(new Vector3[] {Vector3.Zero, Vector3.UnitX});
-            
-            gameObject.AddComponent<TextRenderer>();
-            gameObject.AddComponent<FPSShower>();
+            gameObject.Transform.Move(Vector3.UnitY * 25f);
+            gameObject.Transform.Move(Vector3.UnitX * 20f);
 
-            Core.Resource.Save(new Prefab("TestPrefab", gameObject));
+            gameObject.AddComponent<TextRenderer>();
+            gameObject.AddComponent<Timer>().SetTime(10);
+
+            Core.Resource.Save(new Prefab("TextPrefab", gameObject));
         }
     }
 }

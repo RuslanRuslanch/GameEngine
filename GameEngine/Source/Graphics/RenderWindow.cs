@@ -43,6 +43,11 @@ namespace GameEngine.Graphics
 
         protected override void OnRenderFrame(FrameEventArgs args)
         {
+            if (IsFocused == false)
+            {
+                return;
+            }
+            
             base.OnRenderFrame(args);
 
             GL.ClearColor(Color4.CornflowerBlue);
@@ -63,6 +68,11 @@ namespace GameEngine.Graphics
 
         protected override void OnUpdateFrame(FrameEventArgs args)
         {
+            if (IsFocused == false)
+            {
+                return;
+            }
+
             base.OnUpdateFrame(args);
 
             var delta = (float)args.Time;

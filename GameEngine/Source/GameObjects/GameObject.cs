@@ -4,7 +4,7 @@ using GameEngine.Worlds;
 
 namespace GameEngine.GameObjects
 {
-    public sealed class GameObject
+    public sealed class GameObject : IDisposable
     {
         public readonly List<Component> Components = new List<Component>();
         public readonly List<string> Tags = new List<string>();
@@ -156,5 +156,11 @@ namespace GameEngine.GameObjects
 
             return true;
         }
+
+        public void Dispose()
+        {
+            GC.SuppressFinalize(this);
+        }
+
     }
 }

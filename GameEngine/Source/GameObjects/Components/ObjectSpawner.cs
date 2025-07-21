@@ -19,21 +19,23 @@ namespace GameEngine.Components
 
             if (keyboard.IsKeyReleased(Keys.E))
             {
-                var stopwatch = Stopwatch.StartNew();   
+                var stopwatch = Stopwatch.StartNew();
+                var random = new Random();  
 
-                for (int x = 0; x < 100; x++)
+                for (int i = 0; i < 100; i++)
                 {
-                    for (int z = 0; z < 100; z++)
-                    {
-                        var gameObject = new GameObject(GameObject.World);
+                    var x = random.Next(-32, 32);
+                    var z = random.Next(-32, 32);
 
-                        gameObject.AddComponent<SpriteRenderer>();
-                        gameObject.Transform.SetPosition(new Vector3(-x, 0f, -z));
+                    var gameObject = new GameObject(GameObject.World);
 
-                        GameObject.World.SendRegisterRequest(gameObject);
+                    gameObject.AddTag("Pickable");
+                    gameObject.AddComponent<SpriteRenderer>();
+                    gameObject.Transform.SetPosition(new Vector3(x, 0f, z));
 
-                        _count++;
-                    }
+                    GameObject.World.SendRegisterRequest(gameObject);
+
+                    _count++;
                 }
 
                 stopwatch.Stop();
